@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@hooks/*": ["src/app/hooks/*"],
+      "@utils/*": ["src/app/utils/*"],
+      "@services/*": ["src/app/services/*"],
+      "@type/*": ["src/app/types/*"],
+      "@config/*": ["src/app/config/*"],
+      "@contexts/*": ["src/app/contexts/*"],
+      "@entities/*": ["src/app/entities/*"],
+      "@validations/*": ["src/app/validations/*"],
+      "@pages/*": ["src/view/pages/*"],
+      "@pages": ["src/view/pages/index.ts"],
+      "@layouts/*": ["src/view/layouts/*"],
+      "@layouts": ["src/view/layouts/index.ts"],
+      "@components": ["src/view/components/index.ts"],
+      "@components/*": ["src/view/components/*"],
+      "@styles/*": ["src/view/styles/*"],
+      "@routes/*": ["src/router/*"],
+    },
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

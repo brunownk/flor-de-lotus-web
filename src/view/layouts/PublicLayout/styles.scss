@@ -1,0 +1,81 @@
+#public-layout-container {
+  display: flex;
+  height: 100vh;
+  position: relative;
+
+  #public-layout-logo {
+    height: 40px;
+    position: absolute;
+    margin: 40px;
+  }
+
+  #left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    flex-grow: 1;
+    height: 100%;
+    background: var(--login-bg-color), url("/src/assets/images/overlay-2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    > h1 {
+      font-size: 2rem;
+    }
+
+
+    #ilustration-container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 50%;
+     width: 520px;
+     height: 520px;
+
+     img {
+       height: 520px;
+      }
+    }
+   }
+
+   #right-content {
+     width: 480px;
+     padding: 160px 64px 0px;
+   }
+
+   @media (max-width: 1200px) {
+    #left-content {
+      > h1 {
+        font-size: 1.5rem;
+      }
+
+      #ilustration-container {
+        width: 280px;
+        height: 280px;
+
+        img {
+          height: 280px;
+        }
+      }
+    }
+
+    #right-content {
+      padding: 120px 16px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    #left-content {
+     display: none;
+    }
+
+    #right-content {
+      width: 100%;
+      padding: 80px 16px;
+    }
+  }
+}
+

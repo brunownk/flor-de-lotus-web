@@ -1,0 +1,12 @@
+@use 'sass:color';
+
+.button {
+  background-color: var(--color-text);
+  color: var(--color-bg-layout);
+
+  &:hover {
+    background-color: var(--color-text) !important;
+    color: var(--color-bg-layout) !important;
+    filter: brightness(0.8);
+  }
+}

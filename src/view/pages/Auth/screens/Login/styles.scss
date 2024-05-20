@@ -1,0 +1,15 @@
+#login-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  > form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    > button {
+      margin-top: 12px;
+    }
+  }
+}

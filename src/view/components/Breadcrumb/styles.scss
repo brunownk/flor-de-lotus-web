@@ -1,0 +1,16 @@
+.breadcrumb {
+  a {
+    color: var(--color-text);
+  }
+
+  span {
+    color: var(--color-text-secondary);
+  }
+
+  .ant-breadcrumb-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+

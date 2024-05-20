@@ -1,0 +1,42 @@
+.ant-layout-header {
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  padding: 0px;
+  z-index: 100;
+
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: all 0.2s;
+
+  .header-content {
+    padding: 0 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.ant-dropdown-open:last-child {
+  border: 2px solid var(--color-primary);
+}
+
+.ant-dropdown {
+  background-color: color-mix(in srgb, transparent, var(--color-bg-elevated) 90%);
+
+  box-shadow: var(--header-dropdown-shadow-box);
+  backdrop-filter: blur(20px);
+  background-image: url("/src/assets/images/cyan-blur.png"), url("/src/assets/images/red-blur.png");
+  background-repeat: no-repeat;
+  background-position: right top, left bottom;
+  background-size: 50%, 50%;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.ant-dropdown-menu {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}

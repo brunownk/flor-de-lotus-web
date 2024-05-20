@@ -1,0 +1,8 @@
+#error-message-container {
+  margin-left: 4px;
+  color: var(--color-error-text);
+
+  > span {
+    font-size: 0.75rem
+  }
+}

@@ -1,0 +1,40 @@
+@keyframes rotate360 {
+  to { transform: rotate(360deg) }
+}
+
+.settings-dropdown-button {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > svg {
+    font-size: 1.7rem;
+    animation: 10s rotate360 infinite linear;
+    color: var(--color-text-description);
+  }
+}
+
+.ant-drawer-mask {
+  background-color: transparent !important;
+}
+
+.ant-drawer-content-wrapper {
+  box-shadow: var(--header-dropdown-shadow-box);
+}
+
+.ant-drawer-content {
+  background-color: color-mix(in srgb, transparent, var(--color-bg-layout) 90%) !important;
+  backdrop-filter: blur(20px);
+  background-image: url("/src/assets/images/cyan-blur.png"), url("/src/assets/images/red-blur.png") !important;
+  background-repeat: no-repeat !important;
+  background-position: right top, left bottom !important;
+  background-size: 50%, 50% !important;
+  transition: all 0.2s;
+}
+
+.ant-drawer-title {
+  font-size: 1.125rem !important;
+}

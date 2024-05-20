@@ -1,0 +1,60 @@
+.ant-upload-wrapper {
+  width: 144px !important;
+  height: 144px !important;
+  z-index: 0;
+}
+
+.ant-upload {
+  width: 144px !important;
+  height: 144px !important;
+  background-color: transparent !important;
+  position: relative !important;
+
+  .ant-avatar {
+    opacity: 1;
+    transition: opacity 0.2s;
+
+  }
+
+  &:hover {
+    border-color: var(--color-border) !important;
+
+    .ant-avatar {
+      opacity: 0.4;
+    }
+
+    .upload-placeholder {
+      color: var(--color-text);
+
+      > p {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.upload-placeholder {
+  width: 126px;
+  height: 126px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: color-mix(in srgb, transparent, var(--color-text-secondary) 8%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+
+  color: var(--color-text-description);
+
+  > svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  > p {
+    font-size: 12px;
+  }
+}
+

@@ -1,0 +1,18 @@
+.stretch-toggle-content {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: width 0.2s;
+
+  &:not(.stretched) {
+    width: 30%;
+  }
+
+  .stretch-toggle-line {
+    flex-grow: 1;
+    border-bottom: 1.5px dashed currentColor;
+  }
+}
+

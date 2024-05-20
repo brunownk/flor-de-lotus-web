@@ -1,0 +1,126 @@
+{
+  "zod-default-errors": {
+    "required": "This field is required.",
+    "minLength": "Please enter at least {minLength} characters.",
+    "maxLength": "Please enter no more than {maxLength} characters.",
+    "email": "Please enter a valid email address.",
+    "number": "Please enter a valid number.",
+    "integer": "Please enter a valid integer."
+  },
+  "layouts": {
+    "public": {
+      "welcome-back": "Hi, Welcome back"
+    },
+    "private": {
+      "header": {
+        "search-pages": {
+          "search-placeholder": "Search...",
+          "not-found": {
+            "title": "Not Found",
+            "no-results": "No results for",
+            "suggestion": "Try checking for typos or using complete words."
+          }
+        },
+        "locales": {
+          "br": "Portuguese",
+          "en": "English",
+          "es": "Spanish"
+        },
+        "section": {
+          "settings": "Settings",
+          "logout": "Logout"
+        },
+        "configs": {
+          "title": "Settings",
+          "theme": "Mode",
+          "stretch": "Stretch"
+        }
+      }
+    }
+  },
+  "routes": {
+    "overview": "Overview",
+    "others": "Other cases",
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "profile": "Account",
+    "create": "Create",
+    "edit": "Edit",
+    "list": "List",
+    "account": "Account"
+  },
+  "hooks": {
+    "use-auth": {
+      "get-me-error-message": "Failed to fetch your data",
+      "get-me-error-description": "Please sign in again"
+    }
+  },
+  "pages": {
+    "login": {
+      "title": "Sign in to FLOR DE LOTUS",
+      "username-label": "Username",
+      "username-placeholder": "Your username",
+      "password-label": "Password",
+      "password-placeholder": "Your password",
+      "submit": "Sign in",
+      "error-message": "Login failed",
+      "error-description": "Please check your credentials"
+    },
+    "account": {
+      "title": "Account"
+    },
+    "users": {
+      "list": {
+        "title": "Users",
+        "create-button": "New User",
+        "delete-confirm": "Are you sure you want to delete this user?",
+        "delete-success": "User deleted successfully",
+        "delete-error": "Failed to delete user",
+        "delete-error-description": "Please try again"
+      },
+      "create": {
+        "title": "Create new user",
+        "create-error-message": "Failed to create user",
+        "create-error-description": "Please try again",
+        "create-success-message": "User created successfully"
+      },
+      "edit": {
+        "title": "Edit"
+      }
+    }
+  },
+  "forms": {
+    "user": {
+      "name-label": "Name",
+      "name-placeholder": "Type your name",
+      "username-label": "Username",
+      "username-placeholder": "Type your username",
+      "email-label": "Email",
+      "email-placeholder": "Type your email",
+      "old-password-label": "Old Password",
+      "old-password-placeholder": "Type your old password",
+      "new-password-label": "New Password",
+      "new-password-placeholder": "Type your new password",
+      "confirm-password-label": "Confirm New Password",
+      "confirm-password-placeholder": "Confirm your new password",
+      "password-min-length": "Password must be minimum {{min}}+",
+      "edit-button": "Save Changes",
+      "create-button": "Create Account",
+      "file-allowed-types": "Allowed {{types}}",
+      "file-max-size": "max size of {{size}} Mb",
+      "file-upload": "Upload",
+      "passwords-not-match": "Passwords do not match",
+      "update-error-message": "Failed to update user",
+      "update-error-description": "Please try again",
+      "update-success-message": "User updated successfully",
+      "update-password-error-message": "Failed to update password",
+      "update-password-error-description": "Please check your credentials",
+      "update-password-success-message": "Password updated successfully"
+    }
+  },
+  "components": {
+    "single-upload-photo": {
+      "upload": "Upload photo"
+    }
+  }
+}
