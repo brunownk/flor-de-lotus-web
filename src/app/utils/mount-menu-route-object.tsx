@@ -36,30 +36,22 @@ const formatItem = (route: CustomRouteObject) => {
   return [item];
 };
 
-const extractRouteRecursive = (route: CustomRouteObject): CustomRouteObject | undefined => {
+const extractRouteRecursive = (route: CustomRouteObject): CustomRouteObject[] => {
   if (route.id && route.sider) {
-    return route;
+    const children = route.children
+      ? route.children.flatMap((child) => extractRouteRecursive(child))
+      : [];
+
+    return [{ ...route, children } as any];
+
+  } else if (route.children) {
+    return route.children.flatMap((child) => extractRouteRecursive(child));
   }
 
-  if (route.children) {
-    for (const child of route.children) {
-      return extractRouteRecursive(child);
-    }
-  }
-
-  return undefined;
+  return [];
 };
 
 export function mountMenuRouteObject(routes: CustomRouteObject[]): ItemType[] {
-  const filteredRoutes = routes.reduce((acc, route) => {
-    const extractedRoute = extractRouteRecursive(route);
-
-    if (extractedRoute) {
-      acc.push(extractedRoute);
-    }
-
-    return acc;
-  }, [] as CustomRouteObject[]);
-
+  const filteredRoutes = routes.flatMap((route) => extractRouteRecursive(route));
   return filteredRoutes.flatMap((route) => formatItem(route));
 }

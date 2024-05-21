@@ -40,6 +40,7 @@
   },
   "routes": {
     "overview": "Visão geral",
+    "management": "Gerenciamento",
     "others": "Outros casos",
     "dashboard": "Painel",
     "users": "Usuários",
@@ -57,7 +58,7 @@
   },
   "pages": {
     "login": {
-      "title": "Faça o login no FLOR DE LOTUS",
+      "title": "Realize seu login",
       "username-label": "Usuário",
       "username-placeholder": "Digite seu usuário",
       "password-label": "Senha",
@@ -103,6 +104,8 @@
       "new-password-placeholder": "Digite sua nova senha",
       "confirm-password-label": "Confirme a Senha",
       "confirm-password-placeholder": "Confirme sua senha",
+      "password-label": "Senha",
+      "password-placeholder": "Digite a senha",
       "password-min-length": "Senha deve ter no mínimo {{min}} caracteres",
       "edit-button": "Salvar Alterações",
       "create-button": "Criar Usuário",

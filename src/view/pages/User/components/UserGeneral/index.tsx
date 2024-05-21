@@ -57,6 +57,16 @@ export function UserGeneral({
                   placeholder={translate('username-placeholder')}
                 />
               </Col>
+
+              {!edit && (
+                <Col flex="100%">
+                  <Form.Password
+                    name="password"
+                    label={translate('password-label')}
+                    placeholder={translate('password-placeholder')}
+                  />
+                </Col>
+              )}
             </Row>
 
             <Button htmlType='submit' loading={isLoading}>

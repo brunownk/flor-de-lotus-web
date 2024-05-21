@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { ItemType } from "@type/menu-item";
@@ -17,6 +18,9 @@ const logo = {
 }
 
 export function useSiderController(items: ItemType[]) {
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -29,12 +33,25 @@ export function useSiderController(items: ItemType[]) {
     defaultSelectedKey
   } = getDefaultKeysForPath(items, location.pathname)
 
+  useEffect(() => {
+    const {
+      defaultOpenKeys,
+      defaultSelectedKey
+    } = getDefaultKeysForPath(items, location.pathname);
+
+    setOpenKeys(defaultOpenKeys || []);
+    setSelectedKeys(defaultSelectedKey || []);
+  }, [location.pathname, items]);
+
   return {
     logo: logo[theme],
+    openKeys,
+    selectedKeys,
     isCollapse,
     translatedRoutes,
     defaultOpenKeys,
     defaultSelectedKey,
+    setOpenKeys,
     navigate,
   }
 }

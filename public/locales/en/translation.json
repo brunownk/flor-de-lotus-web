@@ -39,6 +39,7 @@
     }
   },
   "routes": {
+    "management": "Management",
     "overview": "Overview",
     "others": "Other cases",
     "dashboard": "Dashboard",
@@ -57,7 +58,7 @@
   },
   "pages": {
     "login": {
-      "title": "Sign in to FLOR DE LOTUS",
+      "title": "Sign in",
       "username-label": "Username",
       "username-placeholder": "Your username",
       "password-label": "Password",
@@ -103,6 +104,8 @@
       "new-password-placeholder": "Type your new password",
       "confirm-password-label": "Confirm New Password",
       "confirm-password-placeholder": "Confirm your new password",
+      "password-label": "Password",
+      "password-placeholder": "Type the password",
       "password-min-length": "Password must be minimum {{min}}+",
       "edit-button": "Save Changes",
       "create-button": "Create Account",

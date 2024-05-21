@@ -8,7 +8,7 @@ import { CustomAvatarProps } from "./Avatar";
 export function Avatar({ name, size = 32, ...rest }: CustomAvatarProps) {
   return (
     <AntdAvatar size={size} {...rest}>
-      <p style={{ fontSize: size / 2 }}>
+      <p style={{ fontSize: size / 2.5 }}>
         {name && getStringInitials(name)}
       </p>
     </AntdAvatar>

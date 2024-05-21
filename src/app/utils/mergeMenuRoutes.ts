@@ -57,7 +57,10 @@ function arrangeBasedOnPosition(routes: ItemType[]) {
 }
 
 function groupRoutes(routes: ItemType[]) {
-  return routes.reduce((acc, route) => {
+  // Verificar se há rotas sem o campo group
+  const hasOthers = routes.some(route => !route.group);
+
+  const groupedRoutes = routes.reduce((acc, route) => {
     const findedGroup = acc.find((item: ItemType) => item.key === route.group);
 
     if (route.group && !findedGroup) {
@@ -68,26 +71,42 @@ function groupRoutes(routes: ItemType[]) {
         children: [route],
       } as ItemType;
 
-      acc.unshift(group)
+      acc.unshift(group);
 
     } else if (route.group && findedGroup) {
       findedGroup.children?.push(route);
 
-    } else {
-      const others = acc.find((item: ItemType) => item.key === "others");
-      others.children?.push(route);
+    } else if (!route.group) {
+      let others = acc.find((item: ItemType) => item.key === "others");
+
+      if (!others) {
+        others = {
+          key: "others",
+          label: "others",
+          type: "group",
+          children: [],
+        } as ItemType;
+
+        acc.push(others as any);
+      }
+
+      others?.children?.push(route);
     }
 
     return acc;
-  },
-    [
-      {
-        key: "others",
-        label: "others",
-        type: "group",
-        children: [],
-      }
-    ] as any);
+  }, [] as ItemType[]);
+
+  // Adicionar grupo "others" se houver rotas sem grupo
+  if (hasOthers) {
+    groupedRoutes.push({
+      key: "others",
+      label: "others",
+      type: "group",
+      children: groupedRoutes.find(item => item.key === "others")?.children || [],
+    });
+  }
+
+  return groupedRoutes;
 }
 
 export function mergeMenuRoutes(

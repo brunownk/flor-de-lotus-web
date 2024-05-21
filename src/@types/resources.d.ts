@@ -40,6 +40,7 @@ interface Resources {
       }
     },
     "routes": {
+      "management": "Gestión",
       "overview": "Resumen",
       "others": "Otros casos",
       "dashboard": "Tablero",
@@ -58,7 +59,7 @@ interface Resources {
     },
     "pages": {
       "login": {
-        "title": "Iniciar sesión en FLOR DE LOTUS",
+        "title": "Iniciar sesión",
         "username-label": "Usuario",
         "username-placeholder": "Digite su usuario",
         "password-label": "Contraseña",
@@ -104,6 +105,8 @@ interface Resources {
         "new-password-placeholder": "Digite su nueva contraseña",
         "confirm-password-label": "Confirmar Contraseña",
         "confirm-password-placeholder": "Confirme su contraseña",
+        "password-label": "Contraseña",
+        "password-placeholder": "Digite la contraseña",
         "password-min-length": "Contraseña debe tener al menos {{min}} caracteres",
         "edit-button": "Guardar Ediciones",
         "create-button": "Crear Usuario",

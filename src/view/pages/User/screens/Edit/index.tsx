@@ -20,8 +20,7 @@ export function EditUser() {
         title={translate('title')}
         breadcrumb={[
           { title: <Link to="/">{translateRoute('dashboard')}</Link> },
-          { title: <Link to="/users">{translateRoute('dashboard')}</Link> },
-          { title: translateRoute('profile') }
+          { title: translateRoute('edit') }
         ]}
       />
 
