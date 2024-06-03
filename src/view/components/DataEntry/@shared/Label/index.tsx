@@ -2,9 +2,9 @@ import { ILabelProps } from "./Label";
 
 import "./styles.scss";
 
-export function Label({ size = 'medium', children, ...rest }: ILabelProps) {
+export function Label({ size = 'medium', children, className, ...rest }: ILabelProps) {
   return (
-    <span {...rest} className={`label label-${size}`}>
+    <span {...rest} className={`label label-${size} ${className}`.trim()}>
       {children}
     </span>
   )

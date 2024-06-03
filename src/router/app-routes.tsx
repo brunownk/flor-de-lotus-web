@@ -33,20 +33,26 @@ export const privateRoutes: CustomRouteObject[]  = [
         element: <PrivateLayout />,
         children: [
           {
-            id: "users",
-            group: "management",
+            id: "user",
             icon: <BiSolidUserRectangle />,
             sider: true,
+            group: "management",
             children: [
               {
+                id: "list",
+                path: "/users",
+                sider: true,
+                element: <Pages.ListUser />,
+              },
+              {
                 id: "create",
-                path: "/users/create",
+                path: "/user/create",
                 sider: true,
                 element: <Pages.CreateUser />,
               },
               {
                 id: "edit",
-                path: "/users/:id/edit",
+                path: "/user/:userId/edit",
                 sider: false,
                 element: <Pages.EditUser />,
               },

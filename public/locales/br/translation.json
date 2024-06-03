@@ -40,10 +40,9 @@
   },
   "routes": {
     "overview": "Visão geral",
-    "management": "Gerenciamento",
+    "management": "Gestão",
     "others": "Outros casos",
-    "dashboard": "Painel",
-    "users": "Usuários",
+    "user": "Usuário",
     "profile": "Conta",
     "create": "Criar",
     "edit": "Editar",
@@ -58,7 +57,7 @@
   },
   "pages": {
     "login": {
-      "title": "Realize seu login",
+      "title": "Faça o login no OLA",
       "username-label": "Usuário",
       "username-placeholder": "Digite seu usuário",
       "password-label": "Senha",
@@ -73,11 +72,22 @@
     "users": {
       "list": {
         "title": "Usuários",
+        "name": "Nome",
+        "username": "Usuário",
+        "email": "Email",
+        "created-at": "Criado em",
         "create-button": "Novo Usuário",
         "delete-confirm": "Tem certeza que deseja deletar este usuário?",
         "delete-success": "Usuário deletado com sucesso",
-        "delete-error": "Falha ao deletar usuário",
-        "delete-error-description": "Por favor, tente novamente"
+        "delete-error-message": "Falha ao deletar usuário",
+        "delete-error-description": "Por favor, tente novamente",
+        "filter-type": "Listar",
+        "filter-type-all": "Todos",
+        "filter-type-active": "Ativos",
+        "filter-search": "Pesquisar",
+        "filter-seach-placeholder": "Nome, usuário ou email",
+        "error-fetching-message": "Falha ao carregar usuários",
+        "error-fetching-description": "Por favor, recarregue a página"
       },
       "create": {
         "title": "Criar novo usuário",
@@ -86,7 +96,9 @@
         "create-success-message": "Usuário criado com sucesso"
       },
       "edit": {
-        "title": "Editar"
+        "title": "Editar",
+        "get-error-message": "Falha ao carregar usuário",
+        "get-error-description": "Por favor, tente novamente"
       }
     }
   },
@@ -102,10 +114,10 @@
       "old-password-placeholder": "Digite sua senha antiga",
       "new-password-label": "Nova Senha",
       "new-password-placeholder": "Digite sua nova senha",
-      "confirm-password-label": "Confirme a Senha",
-      "confirm-password-placeholder": "Confirme sua senha",
       "password-label": "Senha",
       "password-placeholder": "Digite a senha",
+      "confirm-password-label": "Confirme a Senha",
+      "confirm-password-placeholder": "Confirme sua senha",
       "password-min-length": "Senha deve ter no mínimo {{min}} caracteres",
       "edit-button": "Salvar Alterações",
       "create-button": "Criar Usuário",
@@ -121,9 +133,26 @@
       "update-password-success-message": "Senha atualizada com sucesso"
     }
   },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Deletar",
+    "view": "Visualizar",
+    "delete-confirm-description": "Tem certeza de que deseja excluir?",
+    "delete-success": "Deletado com sucesso",
+    "cancel": "Cancelar"
+  },
   "components": {
+    "button": {
+      "create": "Criar",
+      "filter": "Filtro",
+      "submit-filter": "Filtrar",
+      "clear": "Limpar"
+    },
     "single-upload-photo": {
       "upload": "Enviar foto"
+    },
+    "data-grid": {
+      "no-data": "Sem dados"
     }
   }
 }

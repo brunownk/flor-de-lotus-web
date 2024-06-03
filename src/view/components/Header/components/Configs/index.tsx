@@ -46,6 +46,7 @@ export function Configs() {
         <Space size={24}>
           <Toggle.Group
             label={translate('theme')}
+            labelSize="small"
             initialValue={theme}
             onClick={toggleTheme}
             options={[

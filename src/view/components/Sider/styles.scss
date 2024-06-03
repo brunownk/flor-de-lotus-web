@@ -4,6 +4,7 @@
   overflow-x: hidden;
   position: fixed;
   left: 0;
+  background-color: var(--color-bg-elevated);
   border-right: 1px dashed var(--color-border);
   z-index: 1;
 
@@ -34,27 +35,29 @@
   }
 }
 
+.ant-menu-item, .ant-menu-submenu-title {
+  display: flex !important;
+  align-items: center !important;
+}
+
+
 #sider-menu {
   background-color: transparent;
   border: 0;
-  display: flex ;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+
+  .ant-menu-item-group-list {
+    width: 100%;
+  }
 
   .ant-menu-sub {
+    background-image: none !important;
+    backdrop-filter: none !important;
     background-color: transparent;
   }
 
-  ul {
-    width: 100%;
-  }
-
   li {
-    width: 100%;
-
     &.ant-menu-item {
-      width: calc(100% - 8px);
+      width: calc(100% - 8px) !important;
     }
 
     > span {
@@ -77,19 +80,22 @@
     }
 
     &.ant-menu-submenu-selected, .ant-menu-item-selected {
+      color: var(--color-primary) !important;
+
       > div {
-        color: var(--color-primary-text) !important;
+        color: var(--color-primary) !important;
+        font-weight: 600;
       }
     }
   }
 }
 
 .ant-menu-inline-collapsed, .ant-menu-submenu-vertical {
-  width: calc(100% - 2px) !important;
-  display: flex ;
+  width: 100%;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px !important;
+  gap: 8px;
 
   .ant-menu-item-group {
     .ant-menu-item-group-title {
@@ -98,13 +104,12 @@
   }
 
   li {
-    width: calc(100% - 2px) !important;
+    width: 100%;
     height: auto !important;
-
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     &.ant-menu-submenu-selected {
       .ant-menu-submenu-title {
@@ -118,14 +123,12 @@
 
     > div {
       padding-top: 12px;
-      width: calc(100% - 2px) !important;
       height: auto !important;
 
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
       align-items: center !important;
-
     }
 
     span {
@@ -149,7 +152,7 @@
   > img {
     transition: all 0.2s;
     height: 50px;
-    margin: 24px 0 30px 26px;
+    margin: 24px 0 16px 26px;
   }
 }
 
@@ -157,6 +160,6 @@
   > img {
     transition: all 0.2s;
     height: 40px;
-    margin: 24px 0 16px 26px;
+    margin: 24px 0 8px 26px;
   }
 }

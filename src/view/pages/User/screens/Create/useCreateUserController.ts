@@ -28,12 +28,14 @@ export function useCreateUserController() {
   });
 
   const {
+    reset,
     handleSubmit: hookFormHandleSubmit,
   } = methods;
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     mutate(data, {
       onSuccess: () => {
+        reset();
         message.open({
           type: 'success',
           content: translate('create-success-message'),

@@ -20,7 +20,8 @@ export function CreateUser() {
         title={translate('title')}
         breadcrumb={[
           { title: <Link to="/">{translateRoute('dashboard')}</Link> },
-          { title: translateRoute('create') }
+          { title: <Link to="/users">{translateRoute('list')}</Link> },
+          { title: translateRoute('profile') }
         ]}
       />
 

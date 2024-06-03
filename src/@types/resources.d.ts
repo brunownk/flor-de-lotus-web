@@ -44,7 +44,7 @@ interface Resources {
       "overview": "Resumen",
       "others": "Otros casos",
       "dashboard": "Tablero",
-      "users": "Usuarios",
+      "user": "Usuarios",
       "profile": "Cuenta",
       "create": "Crear",
       "edit": "Editar",
@@ -59,7 +59,7 @@ interface Resources {
     },
     "pages": {
       "login": {
-        "title": "Iniciar sesión",
+        "title": "Iniciar sesión en OLA",
         "username-label": "Usuario",
         "username-placeholder": "Digite su usuario",
         "password-label": "Contraseña",
@@ -74,11 +74,22 @@ interface Resources {
       "users": {
         "list": {
           "title": "Usuarios",
+          "name": "Nombre",
+          "username": "Usuario",
+          "email": "Email",
+          "created-at": "Creado en",
           "create-button": "Nuevo Usuario",
           "delete-confirm": "¿Estás seguro de que deseas eliminar este usuario?",
           "delete-success": "Usuario eliminado",
-          "delete-error": "Error al eliminar usuario",
-          "delete-error-description": "Por favor intente nuevamente"
+          "delete-error-message": "Error al eliminar usuario",
+          "delete-error-description": "Por favor intente nuevamente",
+          "filter-type": "Filtrar",
+          "filter-type-all": "Todos",
+          "filter-type-active": "Activos",
+          "filter-search": "Buscar",
+          "filter-seach-placeholder": "Nombre, usuario o email",
+          "error-fetching-message": "Error al cargar usuarios",
+          "error-fetching-description": "Por favor recargar la página"
         },
         "create": {
           "title": "Crear nuevo usuario",
@@ -87,7 +98,9 @@ interface Resources {
           "create-success-message": "Usuario creado"
         },
         "edit": {
-          "title": "Editar"
+          "title": "Editar",
+          "get-error-message": "Error al cargar usuario",
+          "get-error-description": "Por favor intente nuevamente"
         }
       }
     },
@@ -103,10 +116,10 @@ interface Resources {
         "old-password-placeholder": "Digite su contraseña antigua",
         "new-password-label": "Nueva Contraseña",
         "new-password-placeholder": "Digite su nueva contraseña",
-        "confirm-password-label": "Confirmar Contraseña",
-        "confirm-password-placeholder": "Confirme su contraseña",
         "password-label": "Contraseña",
         "password-placeholder": "Digite la contraseña",
+        "confirm-password-label": "Confirmar Contraseña",
+        "confirm-password-placeholder": "Confirme su contraseña",
         "password-min-length": "Contraseña debe tener al menos {{min}} caracteres",
         "edit-button": "Guardar Ediciones",
         "create-button": "Crear Usuario",
@@ -122,9 +135,26 @@ interface Resources {
         "update-password-success-message": "Contraseña actualizada"
       }
     },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "view": "Ver",
+      "delete-confirm-description": "¿Estás seguro de que quieres eliminar?",
+      "delete-success": "Item eliminado",
+      "cancel": "Cancelar"
+    },
     "components": {
+      "button": {
+        "create": "Crear",
+        "filter": "Filtrar",
+        "submit-filter": "Filtrar",
+        "clear": "Limpiar"
+      },
       "single-upload-photo": {
         "upload": "Subir foto"
+      },
+      "data-grid": {
+        "no-data": "Sin datos"
       }
     }
   }

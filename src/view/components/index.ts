@@ -10,3 +10,6 @@ export * from './Space';
 export * from './ContentLoader';
 export * from './Card';
 export * from './Tabs';
+export * from './DataGrid';
+export * from './Actions';
+export * from './Modal';

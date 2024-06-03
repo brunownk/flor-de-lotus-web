@@ -1,16 +1,19 @@
-import {ChangeEvent, useDeferredValue, useEffect, useMemo, useState } from "react";
+import {ChangeEvent, useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import key from 'keymaster';
 
+import { I18_DEFAULT_NS } from "@config/app-keys";
 import { allPrivateRoutesPaths } from "@routes/router";
 
 import { useTranslateRoutesName } from "@hooks/useTranslateRoutesName";
-import { useTranslation } from "react-i18next";
-import { I18_DEFAULT_NS } from "@config/app-keys";
+
+import { IModalRef } from "@components/Modal";
 
 export function useSearchPageController() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const modalRef = useRef<IModalRef>(null);
 
   const deferredSearchTerm = useDeferredValue(searchTerm);
 
@@ -38,7 +41,7 @@ export function useSearchPageController() {
     const handleShortcut = (event: any) => {
       event.preventDefault();
       event.stopPropagation();
-      setIsModalOpen(true);
+      modalRef.current?.open();
     };
 
     key('ctrl+k', handleShortcut);
@@ -49,11 +52,11 @@ export function useSearchPageController() {
   }, []);
 
   function openModal() {
-    setIsModalOpen(true);
+    modalRef.current?.open();
   }
 
   function closeModal() {
-    setIsModalOpen(false);
+    modalRef.current?.close();
     setSearchTerm('');
   }
 
@@ -69,8 +72,8 @@ export function useSearchPageController() {
   return {
     translate,
     searchTerm,
-    isModalOpen,
     filteredContacts,
+    modalRef,
     openModal,
     closeModal,
     navigateTo,

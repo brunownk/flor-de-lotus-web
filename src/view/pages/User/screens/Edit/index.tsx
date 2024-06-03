@@ -11,6 +11,7 @@ export function EditUser() {
     isLoading,
     translate,
     translateRoute,
+    userName,
     handleSubmit
   } = useEditUserController()
 
@@ -20,7 +21,8 @@ export function EditUser() {
         title={translate('title')}
         breadcrumb={[
           { title: <Link to="/">{translateRoute('dashboard')}</Link> },
-          { title: translateRoute('edit') }
+          { title: <Link to="/users">{translateRoute('list')}</Link> },
+          { title: userName }
         ]}
       />
 
@@ -28,6 +30,7 @@ export function EditUser() {
         methods={methods}
         isLoading={isLoading}
         onSubmit={handleSubmit}
+        editingOtherUser
         edit
       />
     </Page>

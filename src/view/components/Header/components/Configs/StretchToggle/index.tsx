@@ -19,6 +19,7 @@ export function StretchToggle() {
   return (
     <Toggle
       label={translate('stretch')}
+      labelSize="small"
       selected={isStretched}
       onClick={toggleStretch}
     >

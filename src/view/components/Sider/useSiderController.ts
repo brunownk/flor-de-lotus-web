@@ -11,6 +11,7 @@ import { getDefaultKeysForPath } from "@utils/get-menu-key-for-path";
 
 import whiteLogo from "@assets/images/logo-white.png";
 import blueLogo from "@assets/images/logo-blue.png";
+import collapseLogo from "@assets/images/collapse-logo.png";
 
 const logo = {
   dark: whiteLogo,
@@ -28,11 +29,6 @@ export function useSiderController(items: ItemType[]) {
   const { isCollapse } = useSider();
   const { translatedRoutes } = useTranslateRoutesName('label', items)
 
-  const {
-    defaultOpenKeys,
-    defaultSelectedKey
-  } = getDefaultKeysForPath(items, location.pathname)
-
   useEffect(() => {
     const {
       defaultOpenKeys,
@@ -44,14 +40,13 @@ export function useSiderController(items: ItemType[]) {
   }, [location.pathname, items]);
 
   return {
-    logo: logo[theme],
+    logo: isCollapse ? collapseLogo : logo[theme],
+    isCollapse,
     openKeys,
     selectedKeys,
-    isCollapse,
     translatedRoutes,
-    defaultOpenKeys,
-    defaultSelectedKey,
-    setOpenKeys,
     navigate,
+    setOpenKeys,
+    setSelectedKeys
   }
 }

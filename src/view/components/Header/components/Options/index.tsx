@@ -12,9 +12,10 @@ export function Options() {
   return (
     <Dropdown
       className="options-dropdown"
-      menu={{ items }}
       placement="bottomLeft"
+      trigger={["click"]}
       arrow
+      menu={{ items }}
       dropdownRender={(menu) => (
         <div>
           <Space

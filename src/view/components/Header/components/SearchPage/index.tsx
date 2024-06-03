@@ -1,6 +1,7 @@
 import { BiSearch } from "react-icons/bi";
-import { Button, Flex, Input, Modal } from "antd";
+import { Button, Flex, Input } from "antd";
 
+import { Modal } from "@components";
 import { Item } from "./components/Item";
 
 import { useSearchPageController } from "./useSearchPageController";
@@ -11,8 +12,8 @@ export function SearchPage() {
   const {
     translate,
     searchTerm,
-    isModalOpen,
     filteredContacts,
+    modalRef,
     openModal,
     closeModal,
     navigateTo,
@@ -35,17 +36,13 @@ export function SearchPage() {
       </Flex>
 
       <Modal
-        title={null}
-        open={isModalOpen}
+        ref={modalRef}
         onCancel={closeModal}
-        closeIcon={null}
-        footer={null}
         width={600}
         styles={{
           content: {
-            borderRadius: 16,
             padding: 0,
-          }
+          },
         }}
       >
         <div id="input-container">

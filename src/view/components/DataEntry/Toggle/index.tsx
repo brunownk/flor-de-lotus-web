@@ -1,4 +1,4 @@
-import { useId, useState } from "react"
+import { useEffect, useId, useState } from "react"
 import { Flex } from "antd";
 
 import { IToggleGroupProps, IToggleProps, ToggleValue } from "./Toggle";
@@ -17,8 +17,10 @@ export function Toggle({
   group,
   label,
   size = 'medium',
+  labelSize = 'medium',
   selected: groupSelected = false,
   children,
+  onChange,
   onClick,
 }: IToggleProps) {
   const [isSelected, setIsSelected] = useState(groupSelected);
@@ -33,16 +35,21 @@ export function Toggle({
     if (onClick) {
       onClick(!isSelected);
     }
+
+    if (onChange) {
+      onChange(!isSelected);
+    }
   }
 
   return (
     <div className="toggle-container">
       {(label && !group) && (
-        <Label size="small">{label}</Label>
+        <Label size={labelSize}>{label}</Label>
       )}
 
       <button
         key={uniqueId}
+        type="button"
         className={`toggle-item ${selected ? 'active' : ''}`}
         style={{ height: sizes[size] }}
         onClick={handleToggle}
@@ -55,12 +62,21 @@ export function Toggle({
 
 Toggle.Group = function Group({
   label,
+  value,
   options,
   initialValue,
   size = 'medium',
+  labelSize = 'medium',
   onClick,
+  onChange,
 }: IToggleGroupProps) {
-  const [selected, setSelected] = useState<ToggleValue | null>(initialValue);
+  const [selected, setSelected] = useState(initialValue ?? value);
+
+  useEffect(() => {
+    if (value) {
+      setSelected(value);
+    }
+  }, [value])
 
   function handleToggle(value: ToggleValue) {
     setSelected(value);
@@ -68,18 +84,22 @@ Toggle.Group = function Group({
     if (onClick) {
       onClick(value);
     }
+
+    if (onChange) {
+      onChange(value);
+    }
   }
 
   return (
     <div className="toggle-container">
       {label && (
-        <Label size="small">{label}</Label>
+        <Label size={labelSize}>{label}</Label>
       )}
 
       <Flex gap={16}>
-        {options.map((option, index) => (
+        {options?.map((option, index) => (
           <Toggle
-            key={`${index}-${new Date().getTime()}`}
+            key={`option-${String(index)}`}
             group
             size={size}
             onClick={() => handleToggle(option.value)}

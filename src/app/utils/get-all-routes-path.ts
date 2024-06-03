@@ -20,17 +20,7 @@ export function getAllRoutesPath(routes: CustomRouteObject[]) {
 
   const paths = getPathsRecursive(routes);
 
-  paths.sort((a, b) => {
-    if (a.id < b.id) {
-      return -1;
-    }
-
-    if (a.id > b.id) {
-      return 1;
-    }
-
-    return 0;
-  });
+  paths.sort((a, b) => a.id.localeCompare(b.id));
 
   return paths;
 }

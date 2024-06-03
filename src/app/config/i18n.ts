@@ -11,8 +11,7 @@ i18n
   .use(initReactI18next)
   .init({
     supportedLngs: ['br', 'es', 'en'],
-    fallbackLng: ['py', 'br', 'en'],
-    debug: true,
+    fallbackLng: ['es', 'br', 'en'],
     backend: {
       loadPath: `/locales/{{lng}}/${I18_DEFAULT_NS}.json`,
     },

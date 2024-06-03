@@ -1,13 +1,14 @@
-import { Typography } from "antd";
+import { Flex, Popover, Typography } from "antd";
 
 import { HEADER_CONTENT_GAP, HEADER_HEIGHT } from "@config/app-keys";
 
 import { useStretchScreen } from "@hooks/useStretchScreen";
-import { Breadcrumb } from "@components/Breadcrumb";
+import { Button, Breadcrumb } from "@components"
 
 import { IPageContainerProps, IPageHeaderProps } from "./Page";
 
 import './styles.scss'
+import { createElement } from "react";
 
 export function Page({
   children,
@@ -53,14 +54,52 @@ export function Page({
   )
 }
 
-Page.Header = function PageHeader({ title, breadcrumb }: IPageHeaderProps) {
+Page.Header = function PageHeader({
+  title,
+  breadcrumb,
+  headerButtons,
+  filterContent,
+  initialFilters,
+  onFilter,
+  onCreate,
+  onClearFilter,
+}: IPageHeaderProps) {
   return (
-    <div id="page-header">
-      <Typography.Title level={3} >
-        {title}
-      </Typography.Title>
+    <Flex id="page-header" align="center" justify="space-between">
+      <div>
+        <Typography.Title level={3} >
+          {title}
+        </Typography.Title>
 
-      <Breadcrumb items={breadcrumb} />
-    </div>
+        <Breadcrumb items={breadcrumb} />
+      </div>
+
+      <Flex gap={16}>
+        {headerButtons}
+
+        {!headerButtons && (
+          <>
+            {onFilter && (
+              <Popover
+                trigger="click"
+                placement="bottom"
+                content={createElement(filterContent, {
+                  updateFilters: onFilter,
+                  clearFilters: onClearFilter,
+                  initialFilters,
+                })}
+              >
+                <Button.Filter />
+              </Popover>
+            )}
+
+            {onCreate && (
+              <Button.Create onClick={onCreate} />
+            )}
+          </>
+        )}
+      </Flex>
+    </Flex>
+
   )
 }

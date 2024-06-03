@@ -1,6 +1,7 @@
 #page-container {
-  max-height: 100vh;
   max-width: 100%;
+  height: 100%;
+  min-height: 90vh;
   margin-right: auto;
   margin-left: auto;
 
@@ -36,7 +37,7 @@
     margin-bottom: 40px;
   }
 
-  > h3 {
+  h3 {
     color: var(--color-text);
     font-weight: 700;
   }

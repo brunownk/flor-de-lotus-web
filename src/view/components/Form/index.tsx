@@ -5,6 +5,8 @@ import { Controller, FormProvider, useFormContext } from "react-hook-form";
 
 import { CustomGenericFieldProps } from "@components/DataEntry/Input/Input";
 import { IUploadSingleFileProps } from "@components/DataEntry/UploadSingleFile/UploadSingleFile";
+import { IToggleProps, IToggleGroupProps } from "@components/DataEntry/Toggle/Toggle";
+
 import {
   IFormCompositionProps,
   IFormInput,
@@ -14,17 +16,19 @@ import {
 import {
   Input,
   InputPassword,
+  Toggle,
   UploadSingleFile
 } from "../DataEntry";
 
 export function Form({
   children,
   methods,
+  className,
   onSubmit: handleSubmit
 }: IFormProps) {
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={className}>
         {children}
       </form>
     </FormProvider>
@@ -60,6 +64,22 @@ Form.Password = (
 ) => (
   <FormInput {...props}>
     <InputPassword />
+  </FormInput>
+);
+
+Form.Toggle = (
+  props: IFormCompositionProps & IToggleProps
+) => (
+  <FormInput {...props}>
+    <Toggle />
+  </FormInput>
+);
+
+Form.ToggleGroup = (
+  props: IFormCompositionProps & IToggleGroupProps
+) => (
+  <FormInput {...props}>
+    <Toggle.Group />
   </FormInput>
 );
 

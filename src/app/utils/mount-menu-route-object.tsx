@@ -35,23 +35,23 @@ const formatItem = (route: CustomRouteObject) => {
 
   return [item];
 };
-
 const extractRouteRecursive = (route: CustomRouteObject): CustomRouteObject[] => {
   if (route.id && route.sider) {
     const children = route.children
       ? route.children.flatMap((child) => extractRouteRecursive(child))
       : [];
 
-    return [{ ...route, children } as any];
+   return [{ ...route, children }] as any;
+  }
 
-  } else if (route.children) {
+  if (route.children) {
     return route.children.flatMap((child) => extractRouteRecursive(child));
   }
 
   return [];
 };
 
-export function mountMenuRouteObject(routes: CustomRouteObject[]): ItemType[] {
+export function mountMenuRouteObject(routes: CustomRouteObject[]): (ItemType | undefined)[] {
   const filteredRoutes = routes.flatMap((route) => extractRouteRecursive(route));
   return filteredRoutes.flatMap((route) => formatItem(route));
 }

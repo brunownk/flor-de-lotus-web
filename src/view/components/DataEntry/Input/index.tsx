@@ -69,7 +69,7 @@ export const Input = forwardRef((props: InputProps & CustomGenericFieldProps, re
 ));
 
 
-export const InputPassword =forwardRef((props: PasswordProps & CustomGenericFieldProps, ref) => (
+export const InputPassword = forwardRef((props: PasswordProps & CustomGenericFieldProps, ref) => (
   <InputField {...props} ref={ref}>
     <AntdInput.Password
       iconRender={(visible: boolean) => (

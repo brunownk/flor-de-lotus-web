@@ -1,6 +1,7 @@
 .label {
   font-weight: 600;
   color: var(--color-text-secondary);
+  transition: all 0.2s;
 }
 
 .label-small {
@@ -11,6 +12,6 @@
   font-size: 0.875rem;
 }
 
-.label-larger {
+.label-large {
   font-size: 1rem;
 }

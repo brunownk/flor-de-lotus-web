@@ -12,11 +12,13 @@ async function getMeService() {
   return data.user;
 }
 
+export const getMeQueryKey = ['users', 'me'];
+
 export function useGetMeQuery(
   options?: Omit<UseQueryOptions<User, unknown>, 'queryKey' | 'queryFn'>
 ) {
   const { isError, isLoading, isSuccess, data, refetch } = useQuery({
-    queryKey: ['users', 'me'],
+    queryKey: getMeQueryKey,
     queryFn: async () => getMeService(),
     ...options,
   });

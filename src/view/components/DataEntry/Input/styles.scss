@@ -1,6 +1,8 @@
 .input-container {
   .input {
     transition: all 0.2s;
+    background-color: var(--color-bg-elevated);
+    box-shadow: var(--bg-elevated-light);
   }
 
   .label {
@@ -43,21 +45,21 @@
     &:focus-within {
       .input {
         border-width: 2px;
-        border-color: var(--color-text) !important;
+        border-color: var(--color-primary) !important;
       }
 
       .label {
-        color: var(--color-text) !important;
+        color: var(--color-primary) !important;
       }
     }
 
     &:hover {
       .input {
-        border-color: var(--color-text);
+        border-color: var(--color-primary);
       }
 
       .label {
-        color: var(--color-text) !important;
+        color: var(--color-primary) !important;
       }
     }
   }

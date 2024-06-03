@@ -1,6 +1,10 @@
-import { UseMutationOptions, useMutation } from "@tanstack/react-query";
-import { httpClient } from "../../httpClient";
+import { useEffect } from "react";
+import { UseMutationOptions, useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { User } from "@entities/User";
+
+import { httpClient } from "../../httpClient";
+import { listUsersQueryKey } from "../queries";
 
 interface CreateUserInput {
   name: string;
@@ -14,17 +18,29 @@ interface CreateMeResponse {
 }
 
 async function createUserService(input: CreateUserInput) {
-  const { data } = await httpClient.post<CreateMeResponse>('/users', input);
+  const { data } = await httpClient.post<CreateMeResponse>('/users/', input);
   return data;
 }
 
 export function useCreateUserMutation(
   options?: Omit<UseMutationOptions<CreateMeResponse, unknown, CreateUserInput>, 'mutationFn'>
 ) {
-  const { mutate, isPending } = useMutation({
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending, isSuccess } = useMutation({
     mutationFn: async (input: CreateUserInput) => createUserService(input),
     ...options,
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      queryClient.invalidateQueries({
+        queryKey: listUsersQueryKey,
+        refetchType: 'all',
+        exact: true,
+      });
+    }
+  }, [isSuccess, queryClient])
 
   return {
     mutate,

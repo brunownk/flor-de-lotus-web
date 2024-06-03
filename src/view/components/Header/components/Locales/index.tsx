@@ -1,18 +1,20 @@
 import { useTranslation } from "react-i18next";
-import { Button, Dropdown, Flex, Typography } from "antd";
+import { Dropdown, Flex, Typography } from "antd";
 import { MenuProps } from "antd/lib";
 
 import { Locale } from "@type/locales";
 import { useLocale } from "@hooks/useLocale";
+import { I18_DEFAULT_NS } from "@config/app-keys";
 
 import brFlag from "@assets/flags/br-flag.png";
 import usFlag from "@assets/flags/us-flag.png";
 import pyFlag from "@assets/flags/py-flag.png";
 
+import { Button } from "@components/Button";
+
 const { Text } = Typography;
 
 import './styles.scss';
-import { I18_DEFAULT_NS } from "@config/app-keys";
 
 const flags = {
   br: brFlag,
@@ -46,6 +48,7 @@ const items: MenuProps['items'] = [
   {
     key: 'br',
     label: <CustomMenuItem flagKey="br" flagIcon={flags.br} />,
+    onClick: (e) => console.log(e),
   },
   {
     key: 'en',
@@ -60,6 +63,7 @@ export function Locales() {
     <Dropdown
       arrow
       placement="bottomRight"
+      trigger={['click']}
       menu={{
         items,
         selectable: true,
@@ -75,6 +79,5 @@ export function Locales() {
         <img src={flags[locale]} />
       </Button>
     </Dropdown>
-
   )
 }

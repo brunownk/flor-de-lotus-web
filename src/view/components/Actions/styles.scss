@@ -1,0 +1,22 @@
+.actions-dropdown {
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+
+    li.ant-dropdown-menu-item {
+      width: 100%;
+
+      svg {
+        width: 20px;
+        height: 20px;
+        margin-inline-end: 16px !important;
+      }
+
+      &.danger {
+        color: var(--color-error);
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+.ag-root-wrapper {
+  background-color: var(--color-bg-elevated);
+  box-shadow: var(--bg-elevated);
+  border-radius: 16px;
+  color: var(--color-text);
+  border: none;
+}
+
+.ag-center-cols-viewport {
+  min-height: 300px !important;
+}
+
+.ag-header {
+  background-color: var(--th-bg-color);
+  border-bottom: none;
+}
+
+.ag-row {
+  border-bottom: none;
+
+  &:hover {
+    &::before {
+      background-color: var(--row-hover-bg-color);
+    }
+  }
+
+  &:nth-child(odd) {
+    background-color: var(--color-bg-elevated);
+  }
+
+  &:nth-child(even) {
+    background-color: var(--row-even-bg-color);
+  }
+
+  &:last-child{
+    border-bottom: dashed 1px var(--color-border);
+  }
+
+  .ag-cell {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    color: var(--color-text) !important;
+
+    &:not(:last-child) {
+      border-right: dashed 1px var(--color-border) !important;
+    }
+
+    &:focus {
+      border: 1px dashed var(--color-primary) !important;
+    }
+  }
+}
+
+.ag-paging-panel {
+  border-top: none;
+  height: 64px;
+}
+
+.ag-grid-spin {
+  max-height: none !important;
+}
+
+.ag-grid-dense-switch {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}

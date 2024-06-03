@@ -9,6 +9,7 @@ import './styles.scss';
 
 export function UserGeneral({
   edit,
+  editingOtherUser,
   methods,
   isLoading,
   onSubmit: handleSubmit,
@@ -45,7 +46,7 @@ export function UserGeneral({
                 <Form.Input
                   name="email"
                   label={translate('email-label')}
-                  disabled={edit}
+                  disabled={edit && !editingOtherUser}
                   placeholder={translate('email-placeholder')}
                 />
               </Col>
@@ -59,11 +60,12 @@ export function UserGeneral({
               </Col>
 
               {!edit && (
-                <Col flex="100%">
+                <Col flex={1}>
                   <Form.Password
                     name="password"
                     label={translate('password-label')}
                     placeholder={translate('password-placeholder')}
+                    info={translate('password-min-length', { min: 6 })}
                   />
                 </Col>
               )}

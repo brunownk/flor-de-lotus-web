@@ -1,7 +1,6 @@
 import { Menu, MenuProps } from "antd";
 import SiderAnt from "antd/es/layout/Sider";
 
-import collapseLogo from "@assets/images/collapse-logo.png";
 import { ItemType } from "@type/menu-item";
 import { SIDER_COLLAPSED_WIDTH, SIDER_WIDTH } from "@config/app-keys";
 
@@ -16,14 +15,13 @@ interface ISiderProps extends MenuProps {
 export function Sider({ mode = 'inline', items = [] }: ISiderProps) {
   const {
     logo,
+    isCollapse,
     openKeys,
     selectedKeys,
-    isCollapse,
     translatedRoutes,
-    defaultSelectedKey,
-    defaultOpenKeys,
-    setOpenKeys,
     navigate,
+    setOpenKeys,
+    setSelectedKeys
   } = useSiderController(items);
 
   return (
@@ -31,24 +29,25 @@ export function Sider({ mode = 'inline', items = [] }: ISiderProps) {
       id="sider"
       width={SIDER_WIDTH}
       collapsedWidth={SIDER_COLLAPSED_WIDTH}
-      collapsed={isCollapse}
       trigger={null}
       collapsible
+      collapsed={isCollapse}
     >
       <div id={`logo-container${isCollapse ? '-collapse' : ''}`}>
-        <img src={isCollapse ? collapseLogo : logo} alt="FLOR DE LOTUS" />
+        <img src={logo} alt="OLA" />
       </div>
 
       <Menu
         id="sider-menu"
         mode={mode}
         items={translatedRoutes}
-        defaultSelectedKeys={defaultSelectedKey}
-        defaultOpenKeys={defaultOpenKeys}
-        onSelect={({ key }) => navigate(key)}
-        selectedKeys={selectedKeys}
-        openKeys={openKeys}
+        openKeys={isCollapse ? undefined : openKeys}
         onOpenChange={setOpenKeys}
+        selectedKeys={selectedKeys}
+        onSelect={({ key }) => {
+          setSelectedKeys([key]);
+          navigate(key);
+        }}
       />
     </SiderAnt>
   );

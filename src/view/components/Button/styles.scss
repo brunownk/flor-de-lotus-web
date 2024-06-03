@@ -1,12 +1,28 @@
-@use 'sass:color';
 
-.button {
-  background-color: var(--color-text);
-  color: var(--color-bg-layout);
+.ant-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  &:hover {
-    background-color: var(--color-text) !important;
-    color: var(--color-bg-layout) !important;
-    filter: brightness(0.8);
+  &.ant-btn-primary {
+    &:not(.ant-btn-dangerous) {
+      color: var(--color-bg-layout);
+    }
+
+
+    &:hover {
+      background-color: var(--color-text) !important;
+      color: var(--color-bg-layout) !important;
+    }
+  }
+
+
+  &.ant-btn-default {
+    &:hover {
+      border-color: var(--color-text) !important;
+      color: var(--color-bg-text) !important;
+      filter: brightness(0.9);
+
+    }
   }
 }

@@ -7,10 +7,10 @@ export const antdComponents: ThemeConfig['components'] = {
   },
   Modal: {
     colorBgMask: 'rgba(22, 28, 36, 0.8)',
+    borderRadiusLG: 16,
   },
   Card: {
     colorBorderSecondary: 'transparent',
-    borderRadiusLG: 16,
   },
   Input: {
     sizeLG: 60,

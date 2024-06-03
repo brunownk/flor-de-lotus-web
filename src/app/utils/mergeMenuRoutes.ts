@@ -57,7 +57,6 @@ function arrangeBasedOnPosition(routes: ItemType[]) {
 }
 
 function groupRoutes(routes: ItemType[]) {
-  // Verificar se há rotas sem o campo group
   const hasOthers = routes.some(route => !route.group);
 
   const groupedRoutes = routes.reduce((acc, route) => {
@@ -96,7 +95,6 @@ function groupRoutes(routes: ItemType[]) {
     return acc;
   }, [] as ItemType[]);
 
-  // Adicionar grupo "others" se houver rotas sem grupo
   if (hasOthers) {
     groupedRoutes.push({
       key: "others",
