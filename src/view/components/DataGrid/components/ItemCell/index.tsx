@@ -6,12 +6,13 @@ interface IItemCellProps {
   avatar?: string;
   value?: string;
   description?: string;
+  suppressAvatar?: boolean;
 }
 
-export function ItemCell({ avatar, value, description }: IItemCellProps) {
+export function ItemCell({ avatar, value, description, suppressAvatar }: IItemCellProps) {
   return (
     <Space direction="horizontal" align="start" size={16}>
-      <Avatar src={avatar} name={value} size={42} />
+      {!suppressAvatar && <Avatar src={avatar} name={value} size={42} />}
 
       <Flex vertical>
         <Typography.Text>{value}</Typography.Text>

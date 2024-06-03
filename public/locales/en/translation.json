@@ -43,6 +43,7 @@
     "overview": "Overview",
     "others": "Other cases",
     "user": "User",
+    "pet": "Pet",
     "profile": "Account",
     "create": "Create",
     "edit": "Edit",
@@ -57,7 +58,7 @@
   },
   "pages": {
     "login": {
-      "title": "Sign in to OLA",
+      "title": "Sign in",
       "username-label": "Username",
       "username-placeholder": "Your username",
       "password-label": "Password",
@@ -100,6 +101,39 @@
         "get-error-message": "Failed to fetch user",
         "get-error-description": "Please try again"
       }
+    },
+    "pets": {
+      "list": {
+        "title": "Pets",
+        "name": "Name",
+        "owner": "Owner",
+        "breed": "Breed",
+        "type": "Type",
+        "created-at": "Created at",
+        "create-button": "New Pet",
+        "delete-confirm": "Are you sure you want to delete this pet?",
+        "delete-success": "Pet deleted successfully",
+        "delete-error-message": "Failed to delete pet",
+        "delete-error-description": "Please try again",
+        "filter-type": "List",
+        "filter-type-all": "All",
+        "filter-type-active": "Active",
+        "filter-search": "Search",
+        "filter-seach-placeholder": "Name",
+        "error-fetching-message": "Failed to fetch pets",
+        "error-fetching-description": "Please reload the page"
+      },
+      "create": {
+        "title": "Create new pet",
+        "create-error-message": "Failed to create Pet",
+        "create-error-description": "Please try again",
+        "create-success-message": "Pet created successfully"
+      },
+      "edit": {
+        "title": "Edit",
+        "get-error-message": "Failed to fetch pet",
+        "get-error-description": "Please try again"
+      }
     }
   },
   "forms": {
@@ -131,6 +165,24 @@
       "update-password-error-message": "Failed to update password",
       "update-password-error-description": "Please check your credentials",
       "update-password-success-message": "Password updated successfully"
+    },
+    "pet": {
+      "name-label": "Name",
+      "name-placeholder": "Type the name",
+      "owner-label": "Owner",
+      "owner-placeholder": "Select the owner",
+      "breed-label": "Breed",
+      "breed-placeholder": "Select the breed",
+      "type-label": "Type",
+      "type-placeholder": "Select the type",
+      "edit-button": "Save Changes",
+      "create-button": "Create Pet",
+      "file-allowed-types": "Allowed {{types}}",
+      "file-max-size": "max size of {{size}} Mb",
+      "file-upload": "Upload",
+      "update-error-message": "Failed to update pet",
+      "update-error-description": "Please try again",
+      "update-success-message": "Pet updated successfully"
     }
   },
   "actions": {

@@ -44,7 +44,8 @@ interface Resources {
       "overview": "Resumen",
       "others": "Otros casos",
       "dashboard": "Tablero",
-      "user": "Usuarios",
+      "user": "Usuario",
+      "pet": "Mascota",
       "profile": "Cuenta",
       "create": "Crear",
       "edit": "Editar",
@@ -59,7 +60,7 @@ interface Resources {
     },
     "pages": {
       "login": {
-        "title": "Iniciar sesión en OLA",
+        "title": "Iniciar sesión",
         "username-label": "Usuario",
         "username-placeholder": "Digite su usuario",
         "password-label": "Contraseña",
@@ -102,6 +103,39 @@ interface Resources {
           "get-error-message": "Error al cargar usuario",
           "get-error-description": "Por favor intente nuevamente"
         }
+      },
+      "pets": {
+        "list": {
+          "title": "Mascotas",
+          "name": "Nombre",
+          "owner": "Dueño",
+          "breed": "Raza",
+          "type": "Tipo",
+          "created-at": "Creado en",
+          "create-button": "Nuevo Usuario",
+          "delete-confirm": "¿Estás seguro de que deseas eliminar este mascota?",
+          "delete-success": "Mascota eliminado",
+          "delete-error-message": "Error al eliminar mascota",
+          "delete-error-description": "Por favor intente nuevamente",
+          "filter-type": "Filtrar",
+          "filter-type-all": "Todos",
+          "filter-type-active": "Activos",
+          "filter-search": "Buscar",
+          "filter-seach-placeholder": "Nombre",
+          "error-fetching-message": "Error al cargar mascotas",
+          "error-fetching-description": "Por favor recargar la página"
+        },
+        "create": {
+          "title": "Crear nuevo mascota",
+          "create-error-message": "Error al crear mascota",
+          "create-error-description": "Por favor intente nuevamente",
+          "create-success-message": "Mascota creado"
+        },
+        "edit": {
+          "title": "Editar",
+          "get-error-message": "Error al cargar mascota",
+          "get-error-description": "Por favor intente nuevamente"
+        }
       }
     },
     "forms": {
@@ -133,6 +167,25 @@ interface Resources {
         "update-password-error-message": "Error al actualizar contraseña",
         "update-password-error-description": "Por favor, verifique su contraseña actual",
         "update-password-success-message": "Contraseña actualizada"
+      },
+      "pet": {
+        "name-label": "Nombre",
+        "name-placeholder": "Digite el nombre",
+        "owner-label": "Dueño",
+        "owner-placeholder": "Seleccione el dueño",
+        "breed-label": "Raza",
+        "breed-placeholder": "Seleccione la raza",
+        "type-label": "Tipo",
+        "type-placeholder": "Seleccione el tipo",
+        "edit-button": "Guardar Ediciones",
+        "create-button": "Crear Mascota",
+        "file-allowed-types": "Permitido {{types}}",
+        "file-max-size": "tamaño máximo de {{size}} Mb",
+        "file-upload": "Subir",
+        "passwords-not-match": "Las contraseñas no coinciden",
+        "update-error-message": "Error al actualizar mascota",
+        "update-error-description": "Por favor intente nuevamente",
+        "update-success-message": "Mascota actualizado"
       }
     },
     "actions": {

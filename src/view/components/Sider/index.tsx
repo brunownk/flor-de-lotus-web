@@ -34,7 +34,7 @@ export function Sider({ mode = 'inline', items = [] }: ISiderProps) {
       collapsed={isCollapse}
     >
       <div id={`logo-container${isCollapse ? '-collapse' : ''}`}>
-        <img src={logo} alt="OLA" />
+        <img src={logo} alt="Flor de Lótus" />
       </div>
 
       <Menu

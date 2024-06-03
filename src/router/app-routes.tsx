@@ -1,4 +1,5 @@
 import { BiSolidUserRectangle } from "react-icons/bi";
+import { MdOutlinePets } from "react-icons/md";
 
 import { CustomRouteObject } from "@type/custom-route-object";
 
@@ -39,19 +40,19 @@ export const privateRoutes: CustomRouteObject[]  = [
             group: "management",
             children: [
               {
-                id: "list",
+                id: "user-list",
                 path: "/users",
                 sider: true,
                 element: <Pages.ListUser />,
               },
               {
-                id: "create",
+                id: "user-create",
                 path: "/user/create",
                 sider: true,
                 element: <Pages.CreateUser />,
               },
               {
-                id: "edit",
+                id: "user-edit",
                 path: "/user/:userId/edit",
                 sider: false,
                 element: <Pages.EditUser />,
@@ -61,6 +62,32 @@ export const privateRoutes: CustomRouteObject[]  = [
                 path: "/account",
                 sider: false,
                 element: <Pages.Profile />,
+              },
+            ]
+          },
+          {
+            id: "pet",
+            icon: <MdOutlinePets />,
+            sider: true,
+            group: "management",
+            children: [
+              {
+                id: "pet-list",
+                path: "/pets",
+                sider: true,
+                element: <Pages.ListPet />,
+              },
+              {
+                id: "pet-create",
+                path: "/pet/create",
+                sider: true,
+                element: <Pages.CreatePet />,
+              },
+              {
+                id: "pet-edit",
+                path: "/pet/:petId/edit",
+                sider: false,
+                element: <Pages.EditPet />,
               },
             ]
           },

@@ -43,6 +43,7 @@
     "management": "Gestão",
     "others": "Outros casos",
     "user": "Usuário",
+    "pet": "Pet",
     "profile": "Conta",
     "create": "Criar",
     "edit": "Editar",
@@ -57,7 +58,7 @@
   },
   "pages": {
     "login": {
-      "title": "Faça o login no OLA",
+      "title": "Faça seu login",
       "username-label": "Usuário",
       "username-placeholder": "Digite seu usuário",
       "password-label": "Senha",
@@ -100,6 +101,39 @@
         "get-error-message": "Falha ao carregar usuário",
         "get-error-description": "Por favor, tente novamente"
       }
+    },
+    "pets": {
+      "list": {
+        "title": "Pets",
+        "name": "Nome",
+        "owner": "Dono",
+        "breed": "Raça",
+        "type": "Tipo",
+        "created-at": "Criado em",
+        "create-button": "Novo Pet",
+        "delete-confirm": "Tem certeza que deseja deletar este pet?",
+        "delete-success": "Pet deletado com sucesso",
+        "delete-error-message": "Falha ao deletar pet",
+        "delete-error-description": "Por favor, tente novamente",
+        "filter-type": "Listar",
+        "filter-type-all": "Todos",
+        "filter-type-active": "Ativos",
+        "filter-search": "Pesquisar",
+        "filter-seach-placeholder": "Nome",
+        "error-fetching-message": "Falha ao carregar pets",
+        "error-fetching-description": "Por favor, recarregue a página"
+      },
+      "create": {
+        "title": "Criar novo pet",
+        "create-error-message": "Falha ao criar pet",
+        "create-error-description": "Por favor, tente novamente",
+        "create-success-message": "Pet criado com sucesso"
+      },
+      "edit": {
+        "title": "Editar",
+        "get-error-message": "Falha ao carregar pet",
+        "get-error-description": "Por favor, tente novamente"
+      }
     }
   },
   "forms": {
@@ -131,6 +165,25 @@
       "update-password-error-message": "Falha ao atualizar senha",
       "update-password-error-description": "Por favor, verifique sua senha antiga",
       "update-password-success-message": "Senha atualizada com sucesso"
+    },
+    "pet": {
+      "name-label": "Nome",
+      "name-placeholder": "Digite o nome",
+      "owner-label": "Dono",
+      "owner-placeholder": "Selecione o dono",
+      "breed-label": "Raça",
+      "breed-placeholder": "Selecione a raça",
+      "type-label": "Tipo",
+      "type-placeholder": "Selecione o tipo do animal",
+      "edit-button": "Salvar Alterações",
+      "create-button": "Criar Pet",
+      "file-allowed-types": "Permitidos {{types}}",
+      "file-max-size": "tamanho máximo de {{size}} Mb",
+      "file-upload": "Enviar",
+      "passwords-not-match": "Senhas não conferem",
+      "update-error-message": "Falha ao atualizar Pet",
+      "update-error-description": "Por favor, tente novamente",
+      "update-success-message": "Pet atualizado com sucesso"
     }
   },
   "actions": {
