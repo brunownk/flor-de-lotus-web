@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { DataGrid, Page } from "@components";
+import { Table, Page } from "@components";
 
 import { useListPetController } from "./useListPetController";
 import { PetListFilter } from "./components/Filter";
@@ -10,7 +10,7 @@ export function ListPet() {
     data,
     filters,
     columnDefs,
-    isLoading,
+    isListLoading,
     translate,
     translateRoute,
     navigate,
@@ -27,17 +27,21 @@ export function ListPet() {
         onClearFilter={clearFilters}
         filterContent={PetListFilter}
         initialFilters={filters}
+        suppressGoBack
         breadcrumb={[
-          { title: <Link to="/">{translateRoute('dashboard')}</Link> },
+          { title: <Link to="/">{translateRoute('home')}</Link> },
           { title: translateRoute('list') }
         ]}
       />
 
-      <DataGrid
-        rowData={data?.nodes}
-        rowCount={data?.totalCount}
-        isLoading={isLoading}
-        columnDefs={columnDefs}
+      <Table
+        dataSource={data?.nodes}
+        dataCount={data?.totalCount}
+        loading={isListLoading}
+        columns={columnDefs}
+        currentPage={filters?.page}
+        defaultPageSize={filters?.pageSize}
+        onPageChange={(page, pageSize) => updateFilters({ page, pageSize })}
       />
     </Page>
   )

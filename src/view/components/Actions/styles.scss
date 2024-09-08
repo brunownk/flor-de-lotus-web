@@ -14,7 +14,7 @@
         margin-inline-end: 16px !important;
       }
 
-      &.danger {
+      &.danger:not(.ant-dropdown-menu-item-disabled) {
         color: var(--color-error);
       }
     }

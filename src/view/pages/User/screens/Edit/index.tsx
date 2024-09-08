@@ -20,7 +20,7 @@ export function EditUser() {
       <Page.Header
         title={translate('title')}
         breadcrumb={[
-          { title: <Link to="/">{translateRoute('dashboard')}</Link> },
+          { title: <Link to="/">{translateRoute('home')}</Link> },
           { title: <Link to="/users">{translateRoute('list')}</Link> },
           { title: userName }
         ]}

@@ -1,4 +1,9 @@
 .ant-card {
   background-color: var(--color-bg-elevated);
   box-shadow: var(--bg-elevated);
+
+  .ant-card-head {
+    height: auto;
+    padding: 16px 24px 0px;
+  }
 }

@@ -16,66 +16,73 @@ import './styles.scss';
 
 export function UploadPlaceholder() {
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
-    keyPrefix: 'components.single-upload-photo'
+    keyPrefix: 'components.single-upload-photo',
   });
 
   return (
-    <div className='upload-placeholder'>
+    <div className="upload-placeholder">
       <CameraPlus />
       <p>{translate('upload')}</p>
     </div>
-  )
+  );
 }
 
-export const UploadSingleFile = forwardRef(({
-  value,
-  maxSizeInMb,
-  accept = 'image/*',
-  onChange
-}: IUploadSingleFileProps, ref) => {
-  const {
-    imageUrl,
-    previewOpen,
-    previewImage,
-    setPreviewImage,
-    setPreviewOpen,
-    handlePreview,
-    beforeUpload,
-  } = useUploadSingleFileController({
-    value,
-    maxSizeInMb,
-    onChange,
-  });
+export const UploadSingleFile = forwardRef(
+  (
+    {
+      value,
+      maxSizeInMb,
+      accept = 'image/*',
+      onChange,
+      ...props
+    }: IUploadSingleFileProps,
+    ref,
+  ) => {
+    const {
+      imageUrl,
+      previewOpen,
+      previewImage,
+      setPreviewImage,
+      setPreviewOpen,
+      handlePreview,
+      beforeUpload,
+    } = useUploadSingleFileController({
+      value,
+      maxSizeInMb,
+      onChange,
+    });
 
-  return (
-    <>
-      <ImgCrop rotationSlider showReset showGrid>
-        <AntdUpload
-          ref={ref}
-          name='file'
-          id="upload-component"
-          listType="picture-circle"
-          showUploadList={false}
-          accept={accept}
-          beforeUpload={beforeUpload}
-          onPreview={handlePreview}
-        >
-          <UploadPlaceholder />
-          {imageUrl && <Avatar src={imageUrl} size={126} />}
-        </AntdUpload>
-      </ImgCrop>
+    return (
+      <>
+        <ImgCrop rotationSlider showReset showGrid>
+          <AntdUpload
+            ref={ref}
+            name="file"
+            id="upload-component"
+            listType="picture-circle"
+            showUploadList={false}
+            accept={accept}
+            beforeUpload={beforeUpload}
+            onPreview={handlePreview}
+            {...props}
+          >
+            <UploadPlaceholder />
+            {imageUrl && <Avatar src={imageUrl} size={126} />}
+          </AntdUpload>
+        </ImgCrop>
 
-      {previewImage && (
-        <Image
-          wrapperStyle={{ display: 'none' }}
-          preview={{
-            visible: previewOpen,
-            onVisibleChange: (visible) => setPreviewOpen(visible),
-            afterOpenChange: (visible) => !visible && setPreviewImage(''),
-          }}
-          src={previewImage}
-        />
-      )}
-    </>
-  );
-});
+        {previewImage && (
+          <Image
+            wrapperStyle={{ display: 'none' }}
+            preview={{
+              visible: previewOpen,
+              onVisibleChange: (visible) => setPreviewOpen(visible),
+              afterOpenChange: (visible) => !visible && setPreviewImage(''),
+            }}
+            src={previewImage}
+          />
+        )}
+      </>
+    );
+  },
+);

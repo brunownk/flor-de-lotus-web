@@ -1,2 +1,2 @@
-export * from "./router";
-export * from "./app-routes";
+export * from './router';
+export * from './app-routes';

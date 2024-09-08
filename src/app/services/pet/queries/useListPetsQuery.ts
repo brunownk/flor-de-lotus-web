@@ -3,10 +3,11 @@ import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { httpClient } from "@services/httpClient";
 import { Pet } from "@entities/Pet";
 import { ListResponse } from "@type/list-response";
+import { Pagination } from "@type/pagination";
 
-export type PetListFilters = {
-  search: string;
-  withDeleted: boolean;
+export interface PetListFilters extends Pagination {
+  search?: string;
+  withDeleted?: boolean;
 }
 
 async function listPetsService(filters: PetListFilters) {

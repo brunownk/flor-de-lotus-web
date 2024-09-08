@@ -33,7 +33,7 @@ export function Profile() {
       <Page.Header
         title={translate('title')}
         breadcrumb={[
-          { title: <Link to="/">{translateRoute('dashboard')}</Link> },
+          { title: <Link to="/">{translateRoute('home')}</Link> },
           { title: translateRoute('profile') }
         ]}
       />

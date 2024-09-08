@@ -1,4 +1,4 @@
-import { AvatarProps } from "antd";
+import { AvatarProps } from 'antd';
 
 export interface CustomAvatarProps extends AvatarProps {
   name?: string;

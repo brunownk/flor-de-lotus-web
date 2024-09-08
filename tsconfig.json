@@ -25,6 +25,7 @@
       "@components/*": ["src/view/components/*"],
       "@styles/*": ["src/view/styles/*"],
       "@routes/*": ["src/router/*"],
+      "@guards/*": ["src/app/guards/*"],
     },
 
     /* Bundler mode */
@@ -39,7 +40,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

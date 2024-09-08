@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import { message } from 'antd';
 
-import { FileType } from "@type/file-type";
-import { getBase64 } from "@utils/get-base-64";
+import { FileType } from '@type/file-type';
+import { getBase64 } from '@utils/get-base-64';
 
-import { IUploadSingleFileProps } from "./UploadSingleFile";
+import { IUploadSingleFileProps } from './UploadSingleFile';
 
-export function useUploadSingleFileController({ value, maxSizeInMb = 3, onChange }: IUploadSingleFileProps) {
+export function useUploadSingleFileController({
+  value,
+  maxSizeInMb = 3,
+  onChange,
+}: IUploadSingleFileProps) {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState(value);
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -35,7 +39,6 @@ export function useUploadSingleFileController({ value, maxSizeInMb = 3, onChange
 
     return false;
   };
-
 
   return {
     loading,

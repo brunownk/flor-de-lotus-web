@@ -1,7 +1,7 @@
-import { Flex } from "antd";
-import { IoIosInformationCircleOutline } from "react-icons/io";
+import { Flex } from 'antd';
+import { IoIosInformationCircleOutline } from 'react-icons/io';
 
-import { IInfoMessageProps } from "./InfoMessage";
+import { IInfoMessageProps } from './InfoMessage';
 
 import './styles.scss';
 
@@ -11,5 +11,5 @@ export function InfoMessage({ children }: IInfoMessageProps) {
       <IoIosInformationCircleOutline size={18} />
       <span>{children}</span>
     </Flex>
-  )
+  );
 }

@@ -1,10 +1,10 @@
-import { cloneElement } from "react";
-import { Divider, Dropdown, Space, Typography } from "antd";
+import { cloneElement } from 'react';
+import { Divider, Dropdown, Space, Typography } from 'antd';
 
-import { Avatar } from "@components/Avatar";
-import { useOptionsController } from "./useOptionsController";
+import { Avatar } from '@components/Avatar';
+import { useOptionsController } from './useOptionsController';
 
-import './styles.scss'
+import './styles.scss';
 
 export function Options() {
   const { translate, user, items, signout } = useOptionsController();
@@ -13,7 +13,7 @@ export function Options() {
     <Dropdown
       className="options-dropdown"
       placement="bottomLeft"
-      trigger={["click"]}
+      trigger={['click']}
       arrow
       menu={{ items }}
       dropdownRender={(menu) => (
@@ -27,9 +27,7 @@ export function Options() {
               {user?.name}
             </Typography.Text>
 
-            <Typography.Text type="secondary">
-              {user?.email}
-            </Typography.Text>
+            <Typography.Text type="secondary">{user?.email}</Typography.Text>
           </Space>
 
           <Divider dashed style={{ margin: 0 }} />
@@ -39,10 +37,7 @@ export function Options() {
           <Divider dashed style={{ margin: 0 }} />
 
           <ul className="ant-dropdown-menu">
-            <li
-              className="ant-dropdown-menu-item"
-              onClick={signout}
-            >
+            <li className="ant-dropdown-menu-item" onClick={signout}>
               <span className="ant-dropdown-menu-title-content-danger">
                 {translate('logout')}
               </span>
@@ -55,5 +50,5 @@ export function Options() {
         <Avatar name={user?.name} />
       </div>
     </Dropdown>
-  )
+  );
 }

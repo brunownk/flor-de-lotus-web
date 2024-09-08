@@ -8,8 +8,15 @@
   border-right: 1px dashed var(--color-border);
   z-index: 1;
 
+  .ant-menu-item,
+  .ant-menu-submenu-title {
+    display: flex !important;
+    align-items: center !important;
+  }
+
   &::-webkit-scrollbar {
     width: 12px;
+    position: absolute;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -21,7 +28,7 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: transparent
+    background: transparent;
   }
 
   &:hover {
@@ -30,120 +37,88 @@
     }
   }
 
-  div, ul, li, span, i {
-    transition: none !important;
-  }
-}
-
-.ant-menu-item, .ant-menu-submenu-title {
-  display: flex !important;
-  align-items: center !important;
-}
-
-
-#sider-menu {
-  background-color: transparent;
-  border: 0;
-
-  .ant-menu-item-group-list {
-    width: 100%;
-  }
-
-  .ant-menu-sub {
-    background-image: none !important;
-    backdrop-filter: none !important;
+  #menu {
     background-color: transparent;
-  }
+    border: 0;
 
-  li {
-    &.ant-menu-item {
-      width: calc(100% - 8px) !important;
+    .ant-menu-item-group-list {
+      width: 100%;
     }
 
-    > span {
-      margin-left: 12px;
-      font-weight: 500;
+    .ant-menu-sub {
+      background-image: none !important;
+      backdrop-filter: none !important;
+      background-color: transparent;
     }
 
-    > div {
+    li {
+      &.ant-menu-item {
+        width: calc(100% - 8px) !important;
+      }
+
       > span {
         margin-left: 12px;
+        font-weight: 500;
       }
-    }
-
-    &:not(.ant-menu-submenu-selected, .ant-menu-item-selected) {
-      color: var(--menu-label-color) !important;
-
-      div {
-        color: var(--menu-label-color) !important;
-      }
-    }
-
-    &.ant-menu-submenu-selected, .ant-menu-item-selected {
-      color: var(--color-primary) !important;
 
       > div {
-        color: var(--color-primary) !important;
-        font-weight: 600;
+        > span {
+          margin-left: 12px;
+        }
       }
     }
   }
-}
 
-.ant-menu-inline-collapsed, .ant-menu-submenu-vertical {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-
-  .ant-menu-item-group {
-    .ant-menu-item-group-title {
-      display: none !important;
-    }
-  }
-
-  li {
+  .ant-menu-inline-collapsed,
+  .ant-menu-submenu-vertical {
     width: 100%;
-    height: auto !important;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    gap: 8px;
 
-    &.ant-menu-submenu-selected {
-      .ant-menu-submenu-title {
-        background-color: var(--color-primary-bg);
+    .ant-menu-item-group {
+      .ant-menu-item-group-title {
+        display: none !important;
       }
     }
 
-    &.ant-menu-item {
-      padding-top: 10px;
-    }
-
-    > div {
-      padding-top: 12px;
+    li {
+      width: 100%;
       height: auto !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      align-items: center !important;
-    }
+      &.ant-menu-item {
+        padding-top: 10px;
+      }
 
-    span {
-      margin-inline-start: 0px !important;
-      opacity: 1 !important;
-      line-height: 30px;
-      font-size: 10px;
-      font-weight: 600;
-    }
+      > div {
+        padding-top: 12px;
+        height: auto !important;
 
-    i {
-      opacity: 1 !important;
-      transform: rotate(-90deg) !important;
-      top: 18px !important;
-      right: 6px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+
+      span {
+        margin-inline-start: 0px !important;
+        opacity: 1 !important;
+        line-height: 30px;
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      i {
+        opacity: 1 !important;
+        transform: rotate(-90deg) !important;
+        top: 18px !important;
+        right: 6px !important;
+      }
     }
   }
 }

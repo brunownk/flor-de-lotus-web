@@ -1,4 +1,4 @@
-import {  ThemeConfig } from "antd";
+import { ThemeConfig } from 'antd';
 
 export const antdComponents: ThemeConfig['components'] = {
   Menu: {
@@ -22,4 +22,7 @@ export const antdComponents: ThemeConfig['components'] = {
     fontWeight: 700,
     borderRadius: 8,
   },
-}
+  Table: {
+    lineType: 'dashed',
+  },
+};

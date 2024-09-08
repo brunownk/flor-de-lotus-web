@@ -8,4 +8,5 @@ export interface Pet {
   ownerAvatarUrl?: string;
   ownerEmail: string;
   createdAt: Date;
+  deletedAt: Date;
 }

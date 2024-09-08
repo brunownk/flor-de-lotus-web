@@ -1,6 +1,6 @@
 import { theme } from 'antd';
-import { useCallback, createContext, useRef, useState } from "react";
-import LoadingBar, { LoadingBarRef } from "react-top-loading-bar";
+import { useCallback, createContext, useRef, useState } from 'react';
+import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar';
 
 const { useToken } = theme;
 
@@ -25,24 +25,24 @@ export function LoadingPageProvider({ children }: ILoadingPageProviderProps) {
 
   const startLoading = useCallback(() => {
     setIsLoading(true);
-    loadingBarRef.current?.continuousStart()
-  }, [])
+    loadingBarRef.current?.continuousStart();
+  }, []);
 
   const completeLoading = useCallback(() => {
     setIsLoading(false);
-    loadingBarRef.current?.complete()
-  }, [])
+    loadingBarRef.current?.complete();
+  }, []);
 
   return (
     <LoadingPageContext.Provider
       value={{
         isLoading,
         startLoading,
-        completeLoading
+        completeLoading,
       }}
     >
       <LoadingBar color={token.colorPrimary} ref={loadingBarRef} />
       {children}
     </LoadingPageContext.Provider>
-  )
+  );
 }

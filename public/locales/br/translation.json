@@ -3,9 +3,12 @@
     "required": "Este campo é obrigatório.",
     "minLength": "Por favor, insira pelo menos {minLength} caracteres.",
     "maxLength": "Por favor, insira no máximo {maxLength} caracteres.",
+    "minValue": "Por favor, insira um valor maior ou igual a {minValue}.",
+    "maxValue": "Por favor, insira um valor menor ou igual a {maxValue}.",
     "email": "Por favor, insira um email válido.",
     "number": "Por favor, insira um número válido.",
-    "integer": "Por favor, insira um número inteiro válido."
+    "integer": "Por favor, insira um número inteiro válido.",
+    "invalid": "Por favor, insira um valor válido."
   },
   "layouts": {
     "public": {
@@ -33,7 +36,10 @@
         "configs": {
           "title": "Configurações",
           "theme": "Modo",
-          "stretch": "Esticar"
+          "stretch": "Esticar",
+          "tables-density": "Densidade das tabelas",
+          "fullscreen": "Tela cheia",
+          "layout": "Layout"
         }
       }
     }
@@ -42,19 +48,21 @@
     "overview": "Visão geral",
     "management": "Gestão",
     "others": "Outros casos",
-    "user": "Usuário",
-    "pet": "Pet",
+
+    "home": "Início",
     "profile": "Conta",
+
+    "user": "Usuários",
+    "user-list": "Usuários",
+    "user-create": "Criar Usuário",
+
+    "pet": "Pets",
+    "pet-list": "Pets",
+    "pet-create": "Criar Pet",
+
     "create": "Criar",
     "edit": "Editar",
-    "list": "Listar",
-    "account": "Conta"
-  },
-  "hooks": {
-    "use-auth": {
-      "get-me-error-message": "Falha ao carregar seus dados",
-      "get-me-error-description": "Por favor, faça o login novamente"
-    }
+    "list": "Listar"
   },
   "pages": {
     "login": {
@@ -63,9 +71,7 @@
       "username-placeholder": "Digite seu usuário",
       "password-label": "Senha",
       "password-placeholder": "Digite sua senha",
-      "submit": "Entrar",
-      "error-message": "Falha no login",
-      "error-description": "Por favor, verifique suas credenciais"
+      "submit": "Entrar"
     },
     "account": {
       "title": "Conta"
@@ -78,28 +84,18 @@
         "email": "Email",
         "created-at": "Criado em",
         "create-button": "Novo Usuário",
-        "delete-confirm": "Tem certeza que deseja deletar este usuário?",
-        "delete-success": "Usuário deletado com sucesso",
-        "delete-error-message": "Falha ao deletar usuário",
-        "delete-error-description": "Por favor, tente novamente",
         "filter-type": "Listar",
         "filter-type-all": "Todos",
         "filter-type-active": "Ativos",
         "filter-search": "Pesquisar",
-        "filter-seach-placeholder": "Nome, usuário ou email",
-        "error-fetching-message": "Falha ao carregar usuários",
-        "error-fetching-description": "Por favor, recarregue a página"
+        "filter-seach-placeholder": "Nome, usuário ou email"
       },
       "create": {
         "title": "Criar novo usuário",
-        "create-error-message": "Falha ao criar usuário",
-        "create-error-description": "Por favor, tente novamente",
-        "create-success-message": "Usuário criado com sucesso"
+        "breadcrumb": "Novo Usuário"
       },
       "edit": {
-        "title": "Editar",
-        "get-error-message": "Falha ao carregar usuário",
-        "get-error-description": "Por favor, tente novamente"
+        "title": "Editar"
       }
     },
     "pets": {
@@ -125,15 +121,16 @@
       },
       "create": {
         "title": "Criar novo pet",
-        "create-error-message": "Falha ao criar pet",
-        "create-error-description": "Por favor, tente novamente",
-        "create-success-message": "Pet criado com sucesso"
+        "breadcrumb": "Novo Pet"
       },
       "edit": {
-        "title": "Editar",
-        "get-error-message": "Falha ao carregar pet",
-        "get-error-description": "Por favor, tente novamente"
+        "title": "Editar"
       }
+    },
+    "not-found": {
+      "title": "Desculpe, página não encontrada!",
+      "description": "Desculpe, não conseguimos encontrar a página que você está procurando. Talvez você tenha digitado o URL incorretamente? Certifique-se de verificar a ortografia.",
+      "home-button": "Ir para a página inicial"
     }
   },
   "forms": {
@@ -158,13 +155,7 @@
       "file-allowed-types": "Permitidos {{types}}",
       "file-max-size": "tamanho máximo de {{size}} Mb",
       "file-upload": "Enviar",
-      "passwords-not-match": "Senhas não conferem",
-      "update-error-message": "Falha ao atualizar usuário",
-      "update-error-description": "Por favor, tente novamente",
-      "update-success-message": "Usuário atualizado com sucesso",
-      "update-password-error-message": "Falha ao atualizar senha",
-      "update-password-error-description": "Por favor, verifique sua senha antiga",
-      "update-password-success-message": "Senha atualizada com sucesso"
+      "passwords-not-match": "Senhas não conferem"
     },
     "pet": {
       "name-label": "Nome",
@@ -179,19 +170,13 @@
       "create-button": "Criar Pet",
       "file-allowed-types": "Permitidos {{types}}",
       "file-max-size": "tamanho máximo de {{size}} Mb",
-      "file-upload": "Enviar",
-      "passwords-not-match": "Senhas não conferem",
-      "update-error-message": "Falha ao atualizar Pet",
-      "update-error-description": "Por favor, tente novamente",
-      "update-success-message": "Pet atualizado com sucesso"
+      "file-upload": "Enviar"
     }
   },
   "actions": {
     "edit": "Editar",
     "delete": "Deletar",
     "view": "Visualizar",
-    "delete-confirm-description": "Tem certeza de que deseja excluir?",
-    "delete-success": "Deletado com sucesso",
     "cancel": "Cancelar"
   },
   "components": {
@@ -205,7 +190,7 @@
       "upload": "Enviar foto"
     },
     "data-grid": {
-      "no-data": "Sem dados"
+      "show-total-pages": "{{from}} - {{to}} de {{total}} itens"
     }
   }
 }

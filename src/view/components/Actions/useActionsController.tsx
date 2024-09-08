@@ -1,27 +1,31 @@
-import { useMemo, useRef } from "react";
-import { MenuProps } from "antd";
-import { useTranslation } from "react-i18next";
+import { useMemo, useRef } from 'react';
+import { MenuProps } from 'antd';
+import { useTranslation } from 'react-i18next';
 
-import { I18_DEFAULT_NS } from "@config/app-keys";
+import { I18_DEFAULT_NS } from '@config/app-keys';
 
+import TrashIcon from '@assets/icons/trash-icon.svg?react';
+import EditIcon from '@assets/icons/edit-icon.svg?react';
+import EyeIcon from '@assets/icons/eye-icon.svg?react';
 
-import TrashIcon from "@assets/icons/trash-icon.svg?react";
-import EditIcon from "@assets/icons/edit-icon.svg?react";
-import EyeIcon from "@assets/icons/eye-icon.svg?react";
+import { IModalRef } from '@components';
 
-import { IActionsProps } from "./Actions";
-import { IModalRef } from "@components";
+import { IActionsProps } from './Actions';
 
-
-export function useActionsController(options:  IActionsProps['options']) {
+export function useActionsController(options: IActionsProps['options']) {
   const modalDeleteRef = useRef<IModalRef>(null);
 
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
-    keyPrefix: 'actions'
+    keyPrefix: 'actions',
   });
 
   const items = useMemo(() => {
-    const { onEdit, onDelete, onView } = options;
+    const {
+      onEdit,
+      onDelete,
+      onView,
+      deleted
+    } = options;
 
     const actions: MenuProps['items'] = [];
 
@@ -30,8 +34,8 @@ export function useActionsController(options:  IActionsProps['options']) {
         key: 'view',
         label: translate('view'),
         icon: <EyeIcon />,
-        onClick: onView
-      })
+        onClick: onView,
+      });
     }
 
     if (onEdit) {
@@ -39,8 +43,8 @@ export function useActionsController(options:  IActionsProps['options']) {
         key: 'edit',
         label: translate('edit'),
         icon: <EditIcon />,
-        onClick: onEdit
-      })
+        onClick: onEdit,
+      });
     }
 
     if (onDelete) {
@@ -49,16 +53,22 @@ export function useActionsController(options:  IActionsProps['options']) {
         label: translate('delete'),
         className: 'danger',
         icon: <TrashIcon />,
-        onClick: () => modalDeleteRef.current?.open()
-      })
+        disabled: deleted,
+        onClick: () => modalDeleteRef.current?.open(),
+      });
     }
 
     return actions;
-  }, [options, translate])
+  }, [options, translate]);
+
+  async function handleDelete() {
+    await options.onDelete();
+    modalDeleteRef.current?.close();
+  }
 
   return {
     items,
-    translate,
-    modalDeleteRef
-  }
+    handleDelete,
+    modalDeleteRef,
+  };
 }

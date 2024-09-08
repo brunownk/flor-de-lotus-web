@@ -1,14 +1,23 @@
-import {ChangeEvent, useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import {
+  ChangeEvent,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import key from 'keymaster';
 
-import { I18_DEFAULT_NS } from "@config/app-keys";
-import { allPrivateRoutesPaths } from "@routes/router";
+import { I18_DEFAULT_NS } from '@config/app-keys';
 
-import { useTranslateRoutesName } from "@hooks/useTranslateRoutesName";
+import { normalizeString } from '@utils/normalize-string';
 
-import { IModalRef } from "@components/Modal";
+import { useTranslateRoutesName } from '@hooks/useTranslateRoutesName';
+
+import { IModalRef } from '@components/Modal';
+import { allPrivateRoutesPaths } from '@routes/router';
 
 export function useSearchPageController() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,20 +31,29 @@ export function useSearchPageController() {
   const { translatedRoutes } = useTranslateRoutesName('id', allPrivateRoutesPaths);
 
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
-    keyPrefix: 'layouts.private.header.search-pages'
+    keyPrefix: 'layouts.private.header.search-pages',
   });
 
-  const filteredContacts = useMemo(() => translatedRoutes.map((route: any) => {
-    const lowerCaseTerm = deferredSearchTerm.toLowerCase().trim();
-    const parts = route.path.split(new RegExp(`(${lowerCaseTerm})`, 'gi'));
-    return {
-      ...route,
-      pathParts: parts
-    };
-  }).filter((route: any) => (
-    route.id.toLowerCase().includes(deferredSearchTerm.toLowerCase()) ||
-    route.path.toLowerCase().includes(deferredSearchTerm.toLowerCase())
-  )), [translatedRoutes, deferredSearchTerm]);
+  const filteredContacts = useMemo(
+    () =>
+      translatedRoutes
+        .map((route: any) => {
+          const lowerCaseTerm = deferredSearchTerm.toLowerCase().trim();
+          const parts = route.path.split(
+            new RegExp(`(${lowerCaseTerm})`, 'gi'),
+          );
+          return {
+            ...route,
+            pathParts: parts,
+          };
+        })
+        .filter(
+          (route: any) =>
+            normalizeString(route.id).includes(normalizeString(deferredSearchTerm)) ||
+            normalizeString(route.path).includes(normalizeString(deferredSearchTerm))
+        ),
+    [translatedRoutes, deferredSearchTerm],
+  );
 
   useEffect(() => {
     const handleShortcut = (event: any) => {
@@ -78,5 +96,5 @@ export function useSearchPageController() {
     closeModal,
     navigateTo,
     handleChangeSearchTerm,
-  }
+  };
 }

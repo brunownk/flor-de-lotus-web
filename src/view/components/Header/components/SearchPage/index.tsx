@@ -1,12 +1,12 @@
-import { BiSearch } from "react-icons/bi";
-import { Button, Flex, Input } from "antd";
+import { BiSearch } from 'react-icons/bi';
+import { Button, Flex, Input } from 'antd';
 
-import { Modal } from "@components";
-import { Item } from "./components/Item";
+import { Modal } from '@components';
+import { Item } from './components/Item';
 
-import { useSearchPageController } from "./useSearchPageController";
+import { useSearchPageController } from './useSearchPageController';
 
-import './styles.scss'
+import './styles.scss';
 
 export function SearchPage() {
   const {
@@ -71,7 +71,9 @@ export function SearchPage() {
           {filteredContacts.length === 0 && (
             <div id="search-page-not-found-message">
               <strong>{translate('not-found.title')}</strong>
-              <p>{translate('not-found.no-results')} <b>"{searchTerm}"</b>.</p>
+              <p>
+                {translate('not-found.no-results')} <b>"{searchTerm}"</b>.
+              </p>
               <p>{translate('not-found.suggestion')}</p>
             </div>
           )}

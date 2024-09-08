@@ -1,5 +1,5 @@
-import { FileType } from "@type/file-type";
-import { UploadProps } from "antd";
+import { FileType } from '@type/file-type';
+import { UploadProps } from 'antd';
 
 export interface IUploadSingleFileProps extends UploadProps {
   value?: string;

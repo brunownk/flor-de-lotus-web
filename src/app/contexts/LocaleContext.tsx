@@ -1,49 +1,61 @@
-import { ReactNode, createContext, useCallback, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { ReactNode, createContext, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Locale as AntdLocale } from 'antd/es/locale';
 
-import { AG_GRID_LOCALE_BR } from 'public/locales/br/ag-grid-br';
-import { AG_GRID_LOCALE_ES } from 'public/locales/es/ag-grid-es';
-import { AG_GRID_LOCALE_EN } from 'public/locales/en/ag-grid-en';
+import enUS from 'antd/locale/en_US';
+import esES from 'antd/locale/es_ES';
+import ptBR from 'antd/locale/pt_BR';
 
-import { Locale } from "@type/locales";
+import { Locale } from '@type/locales';
 
 interface ILocaleContextValue {
   changeLocale: (locale: Locale) => void;
   locale: Locale;
-  agGridLocale: Record<string, string>;
+  antdLocale: AntdLocale;
 }
 
-export const LocaleContext = createContext<ILocaleContextValue>({} as ILocaleContextValue);
+export const LocaleContext = createContext<ILocaleContextValue>(
+  {} as ILocaleContextValue,
+);
 
 interface LocaleProviderProps {
   children?: ReactNode;
 }
-
-const agGridLocales = {
-  br: AG_GRID_LOCALE_BR,
-  en: AG_GRID_LOCALE_EN,
-  es: AG_GRID_LOCALE_ES
-};
 
 export function LocaleProvider({ children }: LocaleProviderProps) {
   const { i18n } = useTranslation();
 
   const [locale, setLocale] = useState(i18n.language as Locale);
 
-  const changeLocale = useCallback((lang: Locale) => {
-    i18n.changeLanguage(lang);
-    setLocale(lang);
-  }, [i18n])
+  const changeLocale = useCallback(
+    (lang: Locale) => {
+      i18n.changeLanguage(lang);
+      setLocale(lang);
+    },
+    [i18n],
+  );
+
+  function langAntd() {
+    if (locale === 'br') {
+      return ptBR;
+    }
+
+    if (locale === 'en') {
+      return enUS;
+    }
+
+    return esES;
+  }
 
   return (
     <LocaleContext.Provider
       value={{
         changeLocale,
         locale,
-        agGridLocale: agGridLocales[locale],
+        antdLocale: langAntd(),
       }}
     >
       {children}
     </LocaleContext.Provider>
-  )
+  );
 }

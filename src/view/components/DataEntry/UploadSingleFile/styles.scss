@@ -16,18 +16,20 @@
 
   }
 
-  &:hover {
-    border-color: var(--color-border) !important;
+  &:not(.ant-upload-disabled) {
+    &:hover {
+      border-color: var(--color-border) !important;
 
-    .ant-avatar {
-      opacity: 0.4;
-    }
+      .ant-avatar {
+        opacity: 0.4;
+      }
 
-    .upload-placeholder {
-      color: var(--color-primary);
+      .upload-placeholder {
+        color: var(--color-primary);
 
-      > p {
-        font-weight: 600;
+        > p {
+          font-weight: 600;
+        }
       }
     }
   }
@@ -47,6 +49,8 @@
   transition: all 0.2s;
 
   color: var(--color-text-description);
+
+
 
   > svg {
     width: 32px;

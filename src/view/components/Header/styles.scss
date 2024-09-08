@@ -1,6 +1,5 @@
 .ant-layout-header {
-  background-color: transparent;
-  backdrop-filter: blur(5px);
+  background-color: var(--color-bg-elevated);
   padding: 0px;
   z-index: 100;
 
@@ -9,6 +8,11 @@
   left: 0;
   top: 0;
   transition: all 0.2s;
+
+  &.vertical {
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+  }
 
   .header-content {
     padding: 0 40px;
@@ -20,5 +24,98 @@
     .ant-dropdown-open:last-child {
       border: 2px solid var(--color-primary);
     }
+
+    .left-header-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      > img {
+        transition: all 0.2s;
+        height: 36px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.header-nav {
+  display: flex;
+  justify-content: center;
+  background-color: color-mix(
+    in srgb,
+    transparent,
+    var(--color-bg-elevated) 80%
+  );
+  backdrop-filter: blur(6px) !important;
+  border-top: 1px dashed var(--color-border);
+
+  #menu {
+    background-color: transparent;
+
+    &::-webkit-scrollbar {
+      height: 16px !important;
+    }
+
+    li {
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        padding-left: 8px;
+        padding-right: 28px !important;
+      }
+    }
+
+    li.ant-menu-submenu-selected,
+    .ant-menu-item-selected {
+      > div {
+        background-color: var(--color-primary-bg) !important;
+      }
+    }
+  }
+
+  .ant-menu-item-group-title {
+    display: none !important;
+  }
+
+  .ant-menu-overflow {
+    height: 64px;
+    padding: 14px 24px 0;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    border-bottom: 0px;
+  }
+
+  .ant-menu-item-group-list {
+    display: flex;
+
+    .ant-menu-overflow-item {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      padding-inline: 8px !important;
+    }
+
+    .ant-menu-submenu-title {
+      display: flex;
+      align-items: center;
+      padding-inline: 8px !important;
+    }
+  }
+
+  .ant-menu-overflow,
+  .ant-menu-item-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .ant-menu-submenu-arrow {
+    display: inline;
+    transform: rotate(90deg) !important;
+    top: 50% !important;
+    right: 8px !important;
   }
 }

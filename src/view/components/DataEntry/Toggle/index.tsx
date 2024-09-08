@@ -1,17 +1,17 @@
-import { useEffect, useId, useState } from "react"
-import { Flex } from "antd";
+import { useEffect, useId, useState } from 'react';
+import { Flex } from 'antd';
 
-import { IToggleGroupProps, IToggleProps, ToggleValue } from "./Toggle";
+import { IToggleGroupProps, IToggleProps, ToggleValue } from './Toggle';
 
-import { Label } from "..";
+import { Label } from '..';
 
 import './styles.scss';
 
 const sizes = {
-  small: '56px',
+  small: '64px',
   medium: '80px',
   large: '104px',
-}
+};
 
 export function Toggle({
   group,
@@ -43,9 +43,7 @@ export function Toggle({
 
   return (
     <div className="toggle-container">
-      {(label && !group) && (
-        <Label size={labelSize}>{label}</Label>
-      )}
+      {label && !group && <Label size={labelSize}>{label}</Label>}
 
       <button
         key={uniqueId}
@@ -57,7 +55,7 @@ export function Toggle({
         {children}
       </button>
     </div>
-  )
+  );
 }
 
 Toggle.Group = function Group({
@@ -73,10 +71,10 @@ Toggle.Group = function Group({
   const [selected, setSelected] = useState(initialValue ?? value);
 
   useEffect(() => {
-    if (value) {
+    if (value !== undefined) {
       setSelected(value);
     }
-  }, [value])
+  }, [value]);
 
   function handleToggle(value: ToggleValue) {
     setSelected(value);
@@ -92,9 +90,7 @@ Toggle.Group = function Group({
 
   return (
     <div className="toggle-container">
-      {label && (
-        <Label size={labelSize}>{label}</Label>
-      )}
+      {label && <Label size={labelSize}>{label}</Label>}
 
       <Flex gap={16}>
         {options?.map((option, index) => (
@@ -110,5 +106,5 @@ Toggle.Group = function Group({
         ))}
       </Flex>
     </div>
-  )
-}
+  );
+};

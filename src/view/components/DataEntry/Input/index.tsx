@@ -1,8 +1,16 @@
 import { cloneElement, forwardRef } from 'react';
-import { Input as AntdInput, Flex, Skeleton, InputProps } from 'antd';
+import {
+  Input as AntdInput,
+  InputNumber as AntdInputNumber,
+  Select as AntdSelect,
+  Flex,
+  Skeleton,
+  InputProps,
+  SelectProps,
+} from 'antd';
 import { PasswordProps } from 'antd/es/input';
-import { PiEyeClosed } from "react-icons/pi";
-import { HiEye } from "react-icons/hi";
+import { PiEyeClosed } from 'react-icons/pi';
+import { HiEye } from 'react-icons/hi';
 
 import { useLoading } from '@hooks/useLoading';
 
@@ -12,69 +20,86 @@ import { Label, ErrorMessage, InfoMessage } from '..';
 
 import './styles.scss';
 
-export const InputField = forwardRef(({
-  size = 'large',
-  antdSizes,
-  label,
-  error,
-  info,
-  children,
-  ...rest
-}: CustomGenericFieldProps, ref) => {
-  const { isLoading } = useLoading();
+export const InputField = forwardRef(
+  (
+    {
+      size = 'large',
+      antdSizes,
+      label,
+      error,
+      status,
+      info,
+      children,
+      ...rest
+    }: CustomGenericFieldProps,
+    ref,
+  ) => {
+    const { isLoading } = useLoading();
 
-  return (
-    <>
-      {isLoading ? (
-        <Skeleton.Input
-          className={`input ${antdSizes ? '' : 'custom-size'}`}
-          size={size === 'middle' ? 'default' : size}
-          block
-          active
-        />
-      ) : (
-        <Flex
-          gap={5}
-          vertical
-          className={`input-container ${error ? 'has-error' : ''}`.trim()}
-        >
-          {label && <Label>{label}</Label>}
+    return isLoading ? (
+      <Skeleton.Input
+        className={`input ${antdSizes ? '' : 'custom-size'}`}
+        size={size === 'middle' ? 'default' : size}
+        block
+        active
+      />
+    ) : (
+      <Flex
+        gap={5}
+        vertical
+        className={`input-container ${error || status === 'error' ? 'has-error' : ''}`.trim()}
+      >
+        {label && <Label>{label}</Label>}
 
-          {cloneElement(children, {
-            error,
-            size,
-            status: error && 'error',
-            className: `input ${antdSizes ? '' : 'custom-size'}`,
-            ref,
-            ...rest
-          })}
+        {cloneElement(children, {
+          error,
+          size,
+          status: error && 'error',
+          className: `input ${antdSizes ? '' : 'custom-size'}`,
+          ref,
+          ...rest,
+        })}
 
-          {error && (
-            <ErrorMessage>{error}</ErrorMessage>
-          )}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
 
-          {(info && !error) && (
-            <InfoMessage>{info}</InfoMessage>
-          )}
-        </Flex>
-      )}
-    </>
-  )
-});
+        {info && !error && <InfoMessage>{info}</InfoMessage>}
+      </Flex>
+    );
+  },
+);
 
-export const Input = forwardRef((props: InputProps & CustomGenericFieldProps, ref) => (
-  <InputField {...props} ref={ref}>
-    <AntdInput />
-  </InputField>
-));
+export const Input = forwardRef(
+  (props: InputProps & CustomGenericFieldProps, ref) => (
+    <InputField {...props} ref={ref}>
+      <AntdInput />
+    </InputField>
+  ),
+);
 
+export const InputPassword = forwardRef(
+  (props: PasswordProps & CustomGenericFieldProps, ref) => (
+    <InputField {...props} ref={ref}>
+      <AntdInput.Password
+        iconRender={(visible: boolean) =>
+          visible ? <HiEye size={20} /> : <PiEyeClosed size={20} />
+        }
+      />
+    </InputField>
+  ),
+);
 
-export const InputPassword = forwardRef((props: PasswordProps & CustomGenericFieldProps, ref) => (
-  <InputField {...props} ref={ref}>
-    <AntdInput.Password
-      iconRender={(visible: boolean) => (
-        visible ? <HiEye size={20} /> : <PiEyeClosed size={20} />
-      )}
-    />
-  </InputField>
-));
+export const InputNumber = forwardRef(
+  (props: InputProps & CustomGenericFieldProps, ref) => (
+    <InputField {...props} ref={ref}>
+      <AntdInputNumber />
+    </InputField>
+  ),
+);
+
+export const Select = forwardRef(
+  (props: SelectProps & CustomGenericFieldProps, ref) => (
+    <InputField {...props} ref={ref}>
+      <AntdSelect />
+    </InputField>
+  ),
+);

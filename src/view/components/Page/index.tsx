@@ -1,14 +1,15 @@
-import { Flex, Popover, Typography } from "antd";
+import { createElement } from 'react';
+import { Flex, Popover, Typography } from 'antd';
 
-import { HEADER_CONTENT_GAP, HEADER_HEIGHT } from "@config/app-keys";
+import { pageContentClass } from '@styles/class/page-content';
 
-import { useStretchScreen } from "@hooks/useStretchScreen";
-import { Button, Breadcrumb } from "@components"
+import { useStretchScreen } from '@hooks/useStretchScreen';
+import { useMenu } from '@hooks/useMenu';
 
-import { IPageContainerProps, IPageHeaderProps } from "./Page";
+import { Button, Breadcrumb, Space, GoBack } from '@components';
+import { IPageContainerProps, IPageHeaderProps } from './Page';
 
-import './styles.scss'
-import { createElement } from "react";
+import './styles.scss';
 
 export function Page({
   children,
@@ -18,16 +19,15 @@ export function Page({
   ...rest
 }: IPageContainerProps) {
   const { isStretched } = useStretchScreen();
+  const { menuMode } = useMenu();
 
   const generateClassName = () => {
     let className = classNameProp || '';
 
     if (size === 'fullwidth') {
       className += ' fullwidth';
-
     } else if (size === 'larger') {
       className += ' larger';
-
     } else {
       className += ' default';
     }
@@ -37,29 +37,27 @@ export function Page({
     }
 
     return className.trim();
-  }
-
+  };
   return (
     <div
       id="page-container"
       className={generateClassName()}
-      style={{
-        ...style,
-        paddingBottom: HEADER_HEIGHT + HEADER_CONTENT_GAP
-      }}
+      style={{ ...style, ...pageContentClass[menuMode] }}
       {...rest}
     >
       {children}
     </div>
-  )
+  );
 }
 
 Page.Header = function PageHeader({
   title,
   breadcrumb,
+  goBackTo,
   headerButtons,
   filterContent,
   initialFilters,
+  suppressGoBack,
   onFilter,
   onCreate,
   onClearFilter,
@@ -67,11 +65,15 @@ Page.Header = function PageHeader({
   return (
     <Flex id="page-header" align="center" justify="space-between">
       <div>
-        <Typography.Title level={3} >
-          {title}
-        </Typography.Title>
+        <Flex gap={4}>
+          {!suppressGoBack && <GoBack to={goBackTo} />}
 
-        <Breadcrumb items={breadcrumb} />
+          <Space>
+            <Typography.Title level={3}>{title}</Typography.Title>
+
+            <Breadcrumb items={breadcrumb} />
+          </Space>
+        </Flex>
       </div>
 
       <Flex gap={16}>
@@ -94,12 +96,13 @@ Page.Header = function PageHeader({
             )}
 
             {onCreate && (
-              <Button.Create onClick={onCreate} />
+              <Button.Create
+                onClick={onCreate}
+              />
             )}
           </>
         )}
       </Flex>
     </Flex>
-
-  )
-}
+  );
+};

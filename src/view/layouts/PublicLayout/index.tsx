@@ -1,28 +1,28 @@
-import { Outlet } from "react-router-dom";
-import { Typography } from "antd";
-
-const { Title } = Typography;
+import { Outlet } from 'react-router-dom';
+import { Typography } from 'antd';
 
 import ilustration from '@assets/images/ilustration1.png';
 import logoWhite from '@assets/images/logo-white.png';
 import logoBlue from '@assets/images/logo-blue.png';
 
-import { useTheme } from "@hooks/useTheme";
+import { useTheme } from '@hooks/useTheme';
 
-import './styles.scss'
-import { useTranslation } from "react-i18next";
-import { I18_DEFAULT_NS } from "@config/app-keys";
+import './styles.scss';
+import { useTranslation } from 'react-i18next';
+import { I18_DEFAULT_NS } from '@config/app-keys';
+
+const { Title } = Typography;
 
 const logo = {
   dark: logoWhite,
   light: logoBlue,
-}
+};
 
 export function PublicLayout() {
   const { theme } = useTheme();
 
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
-    keyPrefix: 'layouts.public'
+    keyPrefix: 'layouts.public',
   });
 
   return (

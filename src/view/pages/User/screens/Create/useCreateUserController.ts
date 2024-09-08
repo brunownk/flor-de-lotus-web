@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 
 import { I18_DEFAULT_NS } from "@config/app-keys"
 
-import { useCreateUserMutation } from "@services/user/mutations";
+import { useCreateUserMutation } from "@services/user/management";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {

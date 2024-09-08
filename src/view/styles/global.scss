@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-#root, body {
+#root,
+body {
   height: 100%;
   font-family: "Public Sans", sans-serif;
   background-color: var(--color-bg-base);
@@ -14,7 +15,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-#root, html, main, body, div, textarea {
+#root,
+html,
+main,
+body,
+div,
+textarea {
   &::-webkit-scrollbar {
     width: 16px;
   }
@@ -27,7 +33,7 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: transparent
+    background: transparent;
   }
 }
 
@@ -35,23 +41,35 @@
   height: 100%;
 }
 
-.ant-drawer-content, .ant-dropdown, .ant-menu-sub, .ant-popover-inner {
+.ant-drawer-content,
+.ant-dropdown,
+.ant-menu-sub,
+.ant-popover-inner {
   backdrop-filter: blur(20px);
-  background-image: url("/src/assets/images/cyan-blur.png"), url("/src/assets/images/red-blur.png") !important;
+  background-image: url("/src/assets/images/cyan-blur.png"),
+    url("/src/assets/images/red-blur.png") !important;
   background-repeat: no-repeat !important;
   background-position: right top, left bottom !important;
   background-size: 50%, 50% !important;
 }
 
 .ant-dropdown {
-  background-color: color-mix(in srgb, transparent, var(--color-bg-elevated) 90%);
+  background-color: color-mix(
+    in srgb,
+    transparent,
+    var(--color-bg-elevated) 90%
+  );
   box-shadow: var(--header-dropdown-shadow-box);
   border-radius: 10px;
   padding: 4px;
 }
 
 .ant-drawer-content {
-  background-color: color-mix(in srgb, transparent, var(--color-bg-elevated) 90%) !important;
+  background-color: color-mix(
+    in srgb,
+    transparent,
+    var(--color-bg-elevated) 90%
+  ) !important;
   transition: all 0.2s;
 }
 

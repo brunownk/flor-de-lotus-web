@@ -1,8 +1,8 @@
-import { Typography } from "antd"
+import { Typography } from 'antd';
+
+import './styles.scss';
 
 const { Text } = Typography;
-
-import './styles.scss'
 
 interface IItemProps {
   label: string;
@@ -12,17 +12,20 @@ interface IItemProps {
 
 export function Item({ label, pathParts, onClick: handleClick }: IItemProps) {
   return (
-    <button className="search-page-item" onClick={handleClick}>
+    <button type="button" className="search-page-item" onClick={handleClick}>
       <Text className="search-page-item-label">{label}</Text>
       <Text className="search-page-item-path" type="secondary">
-        {pathParts.map((part, index) => (
+        {pathParts.map((part, index) =>
           index % 2 === 0 ? (
             part
           ) : (
-            <span key={index} className="highlighted">{part}</span>
-          )
-        ))}
+            // eslint-disable-next-line react/no-array-index-key
+            <span key={index} className="highlighted">
+              {part}
+            </span>
+          ),
+        )}
       </Text>
     </button>
-  )
+  );
 }

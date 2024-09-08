@@ -1,44 +1,90 @@
-import { z } from "zod";
-import { translateHoF } from "@utils/translate-hof";
+import { z } from 'zod';
+import { translateHoF } from '@utils/translate-hof';
 
 const translate = translateHoF('zod-default-errors');
 
 const customErrorMap: z.ZodErrorMap = (issue) => {
   switch (issue.code) {
     case z.ZodIssueCode.too_small:
-      if (issue.minimum === 1) {
-        return { message: translate('required') };
-      } else {
-        return { message: translate('minLength').replace('{minLength}', String(issue.minimum)) };
-      }
+      return handleToSmall(issue);
 
     case z.ZodIssueCode.too_big:
-      return { message: translate('maxLength').replace('{maxLength}', String(issue.maximum)) };
+      return handleTooBig(issue);
 
     case z.ZodIssueCode.invalid_string:
-      if (issue.validation === 'email') {
-        return { message: translate('email') };
-
-      } else if (issue.validation === 'url') {
-        return { message: translate('url') };
-
-      } else if (issue.validation === 'uuid') {
-        return { message: translate('uuid') };
-      }
-      break;
+      return handleInvalidString(issue);
 
     case z.ZodIssueCode.invalid_type:
-      if (issue.expected === 'number') {
-        return { message: translate('number') };
+      return handleInvalidType(issue);
 
-      } else if (issue.expected === 'integer') {
-        return { message: translate('integer') };
-      }
-
-      break;
+    default:
+      return { message: translate('required') };
   }
+};
 
-  return { message: translate('required') };
+const handleToSmall = (issue: z.ZodTooSmallIssue) => {
+  switch (issue.type) {
+    case 'number':
+      return {
+        message: translate('minValue').replace(
+          '{minValue}',
+          String(issue.minimum),
+        ),
+      };
+    default:
+      if (issue.minimum === 1) {
+        return { message: translate('required') };
+      }
+      return {
+        message: translate('minLength').replace(
+          '{minLength}',
+          String(issue.minimum),
+        ),
+      };
+  }
+};
+
+const handleTooBig = (issue: z.ZodTooBigIssue) => {
+  switch (issue.type) {
+    case 'number':
+      return {
+        message: translate('maxValue').replace(
+          '{maxValue}',
+          String(issue.maximum),
+        ),
+      };
+    default:
+      return {
+        message: translate('maxLength').replace(
+          '{maxLength}',
+          String(issue.maximum),
+        ),
+      };
+  }
+};
+
+const handleInvalidString = (issue: z.ZodInvalidStringIssue) => {
+  switch (issue.validation) {
+    case 'email':
+      return { message: translate('email') };
+    case 'url':
+      return { message: translate('url') };
+    case 'uuid':
+      return { message: translate('uuid') };
+    default:
+      return { message: translate('invalid') };
+  }
+};
+
+const handleInvalidType = (issue: z.ZodInvalidTypeIssue) => {
+  switch (issue.expected) {
+    case 'number':
+      return { message: translate('number') };
+    case 'integer':
+      return { message: translate('integer') };
+    default:
+      return { message: translate('required') };
+  }
 };
 
 // Set custom error map globally for Zod

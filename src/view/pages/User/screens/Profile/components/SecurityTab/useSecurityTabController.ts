@@ -11,7 +11,7 @@ import {
   updateMePasswordValidationSchema,
 } from "@validations/user/update-me-password";
 
-import { useUpdateMePasswordMutation } from "@services/user";
+import { useUpdateMePasswordMutation } from "@services/user/management";
 
 export function useSecurityTabController() {
   const { mutate, isPending } = useUpdateMePasswordMutation();

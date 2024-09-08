@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@hooks/useAuth";
 
 import { EditUserFormData, editUserValidationSchema } from "@validations/user";
-import { useUpdateMeMutation } from "@services/user";
+import { useUpdateMeMutation } from "@services/user/management";
 
 export function useGeneralTabController() {
   const { user, refetch } = useAuth();

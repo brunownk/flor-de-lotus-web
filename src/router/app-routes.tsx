@@ -28,7 +28,7 @@ export const publicRoutes: CustomRouteObject[] = [
 
 export const privateRoutes: CustomRouteObject[]  = [
   {
-    element: <AuthGuard isPrivate={true} />,
+    element: <AuthGuard isPrivate={false} />,
     children: [
       {
         element: <PrivateLayout />,
@@ -92,8 +92,8 @@ export const privateRoutes: CustomRouteObject[]  = [
             ]
           },
           {
-            path: "*",
-            element: null,
+            path: '*',
+            element: <Pages.NotFound />,
           },
         ],
       },

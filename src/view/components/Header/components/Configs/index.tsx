@@ -1,27 +1,27 @@
-import { useState } from "react";
-import { Button, Drawer } from "antd";
-import { useTranslation } from "react-i18next";
+import { useState } from 'react';
+import { Button, Drawer } from 'antd';
+import { useTranslation } from 'react-i18next';
 
-import SettingIcon from "@assets/icons/setting.svg?react";
-import MoonIcon from "@assets/icons/ic_moon.svg?react";
-import SunIcon from "@assets/icons/ic_sun.svg?react";
+import SettingIcon from '@assets/icons/setting.svg?react';
 
-import { I18_DEFAULT_NS } from "@config/app-keys";
+import { I18_DEFAULT_NS } from '@config/app-keys';
 
-import { useTheme } from "@hooks/useTheme";
-
-import { Toggle, Space } from "@components";
-import { StretchToggle } from "./StretchToggle";
+import { Space } from '@components';
+import {
+  StretchToggle,
+  DensityToggle,
+  FullScreenToggle,
+  LayoutToggle,
+  ThemeToggle,
+} from './components';
 
 import './styles.scss';
 
 export function Configs() {
   const [open, setOpen] = useState(false);
 
-  const { theme, toggleTheme } = useTheme();
-
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
-    keyPrefix: 'layouts.private.header.configs'
+    keyPrefix: 'layouts.private.header.configs',
   });
 
   return (
@@ -39,26 +39,18 @@ export function Configs() {
         title={translate('title')}
         placement="right"
         closable={false}
-        width={280}
+        width={300}
         onClose={() => setOpen(false)}
         open={open}
+        footer={<FullScreenToggle />}
       >
-        <Space size={24}>
-          <Toggle.Group
-            label={translate('theme')}
-            labelSize="small"
-            initialValue={theme}
-            onClick={toggleTheme}
-            options={[
-              { value: 'light', label: <SunIcon /> },
-              { value: 'dark', label: <MoonIcon /> },
-            ]}
-          />
-
+        <Space size={30}>
+          <ThemeToggle />
+          <DensityToggle />
+          <LayoutToggle />
           <StretchToggle />
         </Space>
-
       </Drawer>
     </>
-  )
+  );
 }

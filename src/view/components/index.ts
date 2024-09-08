@@ -3,13 +3,15 @@ export * from './Header';
 export * from './DataEntry';
 export * from './Form';
 export * from './Breadcrumb';
-export * from './Page'
+export * from './Page';
 export * from './Avatar';
 export * from './Button';
 export * from './Space';
 export * from './ContentLoader';
 export * from './Card';
 export * from './Tabs';
-export * from './DataGrid';
+export * from './Table';
 export * from './Actions';
 export * from './Modal';
+export * from './GoBack';
+export * from './Permissions'

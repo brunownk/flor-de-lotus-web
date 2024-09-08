@@ -1,18 +1,19 @@
-import { RouterProvider } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { App as AntdApp } from 'antd';
+import { RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import { SiderProvider } from "@contexts/SiderContext";
-import { ThemeProvider } from "@contexts/ThemeContext";
-import { LocaleProvider } from "@contexts/LocaleContext";
-import { LoadingPageProvider } from "@contexts/LoadingPageContext";
-import { AuthProvider } from "@contexts/AuthContext";
-import { StretchScreenProvider } from "@contexts/StretchScreenContext";
+import { MenuProvider } from '@contexts/MenuContext';
+import { ThemeProvider } from '@contexts/ThemeContext';
+import { LocaleProvider } from '@contexts/LocaleContext';
+import { LoadingPageProvider } from '@contexts/LoadingPageContext';
+import { AuthProvider } from '@contexts/AuthContext';
+import { StretchScreenProvider } from '@contexts/StretchScreenContext';
+import { TableDensityProvider } from '@contexts/TableDensityContext';
 
-import { CssTokenBridge } from "@styles/css-token-bridge";
+import { CssTokenBridge } from '@styles/css-token-bridge';
 
-import { router } from "./router";
+import { router } from './router';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,30 +26,33 @@ const queryClient = new QueryClient({
     },
     mutations: {
       retry: 0,
-    }
-  }
+    },
+  },
 });
 
-export const App = () => {
+export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <LocaleProvider>
         <ThemeProvider>
           <AntdApp>
             <LoadingPageProvider>
-                <AuthProvider>
-                  <SiderProvider>
-                    <StretchScreenProvider>
+              <AuthProvider>
+                <MenuProvider>
+                  <StretchScreenProvider>
+                    <TableDensityProvider>
                       <CssTokenBridge />
                       <RouterProvider router={router} />
-                    </StretchScreenProvider>
-                  </SiderProvider>
-                </AuthProvider>
+                    </TableDensityProvider>
+                  </StretchScreenProvider>
+                </MenuProvider>
+              </AuthProvider>
             </LoadingPageProvider>
           </AntdApp>
         </ThemeProvider>
       </LocaleProvider>
+
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
-};
+}

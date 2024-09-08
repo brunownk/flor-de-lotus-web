@@ -3,9 +3,12 @@
     "required": "This field is required.",
     "minLength": "Please enter at least {minLength} characters.",
     "maxLength": "Please enter no more than {maxLength} characters.",
+    "minValue": "Please enter a value greater than or equal to {minValue}.",
+    "maxValue": "Please enter a value less than or equal to {maxValue}.",
     "email": "Please enter a valid email address.",
     "number": "Please enter a valid number.",
-    "integer": "Please enter a valid integer."
+    "integer": "Please enter a valid integer.",
+    "invalid": "Please enter a valid value."
   },
   "layouts": {
     "public": {
@@ -33,22 +36,33 @@
         "configs": {
           "title": "Settings",
           "theme": "Mode",
-          "stretch": "Stretch"
+          "stretch": "Stretch",
+          "tables-density": "Tables density",
+          "fullscreen": "Fullscreen",
+          "layout": "Layout"
         }
       }
     }
   },
   "routes": {
-    "management": "Management",
     "overview": "Overview",
+    "management": "Management",
     "others": "Other cases",
-    "user": "User",
-    "pet": "Pet",
-    "profile": "Account",
+
+    "home": "Home",
+    "profile": "Profile",
+
+    "user": "Users",
+    "user-list": "Users",
+    "user-create": "New User",
+
+    "pet": "Pets",
+    "pet-list": "Pets",
+    "pet-create": "New Pet",
+
     "create": "Create",
     "edit": "Edit",
-    "list": "List",
-    "account": "Account"
+    "list": "List"
   },
   "hooks": {
     "use-auth": {
@@ -134,6 +148,11 @@
         "get-error-message": "Failed to fetch pet",
         "get-error-description": "Please try again"
       }
+    },
+    "not-found": {
+      "title": "Sorry, page not found!",
+      "description": "Sorry, we couldn't find the page you're looking for. Perhaps you've mistyped the URL? Be sure to check your spelling.",
+      "home-button": "Go to home"
     }
   },
   "forms": {
@@ -204,7 +223,7 @@
       "upload": "Upload photo"
     },
     "data-grid": {
-      "no-data": "No data"
+      "show-total-pages": "{{from}} - {{to}} of {{total}} items"
     }
   }
 }

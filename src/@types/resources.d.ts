@@ -4,9 +4,12 @@ interface Resources {
       "required": "Este campo es obligatorio.",
       "minLength": "Por favor, introduzca al menos {minLength} caracteres.",
       "maxLength": "Por favor, introduzca no más de {maxLength} caracteres.",
+      "minValue": "Por favor, introduzca un valor mayor o igual a {minValue}.",
+      "maxValue": "Por favor, introduzca um valor menor o igual a {maxValue}.",
       "email": "Por favor, introduzca email válido.",
       "number": "Por favor, introduzca un número válido.",
-      "integer": "Por favor, introduzca un número entero válido."
+      "integer": "Por favor, introduzca un número entero válido.",
+      "invalid": "Por favor, introduzca un valor válido."
     },
     "layouts": {
       "public": {
@@ -34,23 +37,30 @@ interface Resources {
           "configs": {
             "title": "Configuración",
             "theme": "Modo",
-            "stretch": "Estirar"
+            "stretch": "Estirar",
+            "tables-density": "Densidad de tablas",
+            "fullscreen": "Pantalla completa",
+            "layout": "Diseño"
           }
         }
       }
     },
     "routes": {
-      "management": "Gestión",
       "overview": "Resumen",
+      "management": "Gestión",
+      "fleet": "Flota",
       "others": "Otros casos",
-      "dashboard": "Tablero",
-      "user": "Usuario",
-      "pet": "Mascota",
+      "home": "Inicio",
       "profile": "Cuenta",
+      "user": "Usuarios",
+      "user-list": "Usuarios",
+      "user-create": "Crear Usuario",
+      "pet": "Mascotas",
+      "pet-list": "Mascotas",
+      "pet-create": "Crear Mascota",
       "create": "Crear",
       "edit": "Editar",
-      "list": "Listar",
-      "account": "Cuenta"
+      "list": "Listar"
     },
     "hooks": {
       "use-auth": {
@@ -136,6 +146,11 @@ interface Resources {
           "get-error-message": "Error al cargar mascota",
           "get-error-description": "Por favor intente nuevamente"
         }
+      },
+      "not-found": {
+        "title": "¡Lo siento, página no encontrada!",
+        "description": "Lo siento, no pudimos encontrar la página que está buscando. ¿Quizás escribió mal la URL? Asegúrese de revisar su ortografía.",
+        "home-button": "Ir a la página de inicio"
       }
     },
     "forms": {
@@ -207,7 +222,7 @@ interface Resources {
         "upload": "Subir foto"
       },
       "data-grid": {
-        "no-data": "Sin datos"
+        "show-total-pages": "{{from}} - {{to}} de {{total}} artículos"
       }
     }
   }

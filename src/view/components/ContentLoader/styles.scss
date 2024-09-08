@@ -20,6 +20,10 @@
   background-color: var(--color-border);
   height: 5px;
 
+  @media (max-width: 720px) {
+    width: 250px;
+  }
+
   .content-loader-bar {
     position: absolute;
     border-radius: 8px;

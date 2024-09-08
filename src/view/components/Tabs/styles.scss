@@ -47,3 +47,9 @@
 .ant-tabs-ink-bar {
   background: var(--color-primary) !important;
 }
+
+.ant-tabs-tab-disabled {
+  span {
+    color: var(--color-text-disabled);
+  }
+}

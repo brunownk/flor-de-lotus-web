@@ -1,52 +1,31 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { ItemType } from "@type/menu-item";
+import whiteLogo from '@assets/images/logo-white.png';
+import blueLogo from '@assets/images/logo-blue.png';
+import collapsedLogo from '@assets/images/collapse-logo.png';
 
-import { useSider } from "@hooks/useSider";
-import { useTheme } from "@hooks/useTheme";
-import { useTranslateRoutesName } from "@hooks/useTranslateRoutesName";
-
-import { getDefaultKeysForPath } from "@utils/get-menu-key-for-path";
-
-import whiteLogo from "@assets/images/logo-white.png";
-import blueLogo from "@assets/images/logo-blue.png";
-import collapseLogo from "@assets/images/collapse-logo.png";
+import { useMenu } from '@hooks/useMenu';
+import { useTheme } from '@hooks/useTheme';
 
 const logo = {
   dark: whiteLogo,
   light: blueLogo,
-}
+};
 
-export function useSiderController(items: ItemType[]) {
-  const [openKeys, setOpenKeys] = useState<string[]>([]);
-  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
-
+export function useSiderController() {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const { theme } = useTheme();
-  const { isCollapse } = useSider();
-  const { translatedRoutes } = useTranslateRoutesName('label', items)
+  const { isCollapsed } = useMenu();
 
-  useEffect(() => {
-    const {
-      defaultOpenKeys,
-      defaultSelectedKey
-    } = getDefaultKeysForPath(items, location.pathname);
-
-    setOpenKeys(defaultOpenKeys || []);
-    setSelectedKeys(defaultSelectedKey || []);
-  }, [location.pathname, items]);
+  const handleGoHome = useCallback(() => {
+    navigate('/');
+  }, [navigate]);
 
   return {
-    logo: isCollapse ? collapseLogo : logo[theme],
-    isCollapse,
-    openKeys,
-    selectedKeys,
-    translatedRoutes,
-    navigate,
-    setOpenKeys,
-    setSelectedKeys
-  }
+    logo: isCollapsed ? collapsedLogo : logo[theme],
+    isCollapsed,
+    handleGoHome,
+  };
 }

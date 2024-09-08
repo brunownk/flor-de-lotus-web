@@ -1,4 +1,4 @@
-import { Space as AntdSpace, SpaceProps } from "antd";
+import { Space as AntdSpace, SpaceProps } from 'antd';
 
 export function Space({
   direction = 'vertical',
@@ -16,5 +16,5 @@ export function Space({
     >
       {children}
     </AntdSpace>
-  )
+  );
 }

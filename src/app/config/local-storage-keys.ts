@@ -3,4 +3,5 @@ export const localStorageKeys = {
   THEME_MODE: 'ft:themeMode',
   STRETCHED_SCREEN: 'ft:stretchedScreen',
   DENSIFIED_TABLE: 'ft:densifiedTable',
+  MENU_MODE: 'ft:menuMode',
 }

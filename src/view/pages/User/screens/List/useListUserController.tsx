@@ -1,36 +1,34 @@
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { AgGridReactProps } from "ag-grid-react";
 import { useTranslation } from "react-i18next"
-import { message, notification } from "antd";
+import { Flex, TableProps } from "antd";
 
 import { User } from "@entities/User";
 
 import { I18_DEFAULT_NS } from "@config/app-keys"
-import { ICellRendererParams } from "@ag-grid-community/core";
 
 import {
-  DeleteUserInput,
   UserListFilters,
   useDeleteUserMutation,
-} from "@services/user";
+} from "@services/user/management";
 import { useFilters } from "@hooks/useFilters";
 
-import { Actions, DataGrid } from "@components";
+import { Actions, Table } from "@components";
 import { mockData } from "./data.mock";
 
 export function useListUserController() {
   const navigate = useNavigate();
 
-  const {
-    filters,
-    updateFilters,
-    clearFilters
-  } = useFilters<UserListFilters>();
+  const { filters, updateFilters, clearFilters } = useFilters<UserListFilters>({
+    page: 1,
+    pageSize: 8,
+    sortBy: 'name',
+    sortDirection: 'ASC',
+  });
 
   const {
-    mutate,
-    isPending: isDeletePending,
+    mutate: handleDelete,
+    isPending: isDeletePending
   } = useDeleteUserMutation();
 
   // const { data, isLoading, isError } = useListUsersQuery(filters);
@@ -43,61 +41,44 @@ export function useListUserController() {
     keyPrefix: "routes"
   })
 
-  const handleDelete = useCallback(async (data: DeleteUserInput) => {
-    mutate(data, {
-      onSuccess: () => {
-        message.open({
-          type: 'success',
-          content: translate('delete-success'),
-        });
-      },
-      onError: () => notification.error({
-        message: translate('delete-error-message'),
-        description: translate('delete-error-description'),
-      })
-    });
-  }, [mutate, translate])
-
   const columnDefs = useMemo(() => [
     {
-      headerName: translate('name'),
-      flex: 2,
-      cellRenderer: ({ data }: ICellRendererParams<User>) => (
-        <DataGrid.ItemCell
-          avatar={data?.avatar_url}
-          value={data?.name}
-          description={data?.email}
+      title: translate('name'),
+      key: 'name',
+      render: (_, record) => (
+        <Table.ItemCell
+          value={record.name}
+          description={record.email}
         />
       ),
     },
     {
-      headerName: translate('username'),
-      field: 'username',
-      flex: 1,
+      title: translate('username'),
+      dataIndex: 'username',
+      key: 'username',
     },
     {
-      headerName: translate('created-at'),
-      field: 'createdAt',
-      flex: 1,
-      cellRenderer: ({ data }: ICellRendererParams<User>) => (
-        <DataGrid.DateCell value={data?.createdAt} />
-      )
+      title: translate('created-at'),
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      render: (createdAt) => <Table.DateCell value={createdAt} />,
     },
     {
-      cellRenderer: Actions,
-      cellRendererParams: ({ data }: ICellRendererParams<User>) => ({
-        options: {
-          onEdit: () => navigate(`/user/${data?.id}/edit`),
-          onDelete: () => handleDelete({ id: data?.id as string }),
-        }
-      }),
+      dataIndex: 'id',
+      render: (id, record) => (
+        <Flex justify="center">
+          <Actions
+            options={{
+              onEdit: () => navigate(`/user/${id}/edit`),
+              onDelete: () => handleDelete({ id: id as string }),
+              deleted: !!record?.deletedAt,
+            }}
+          />
+        </Flex>
+      ),
       width: 80,
-      cellStyle: {
-        display: 'flex',
-        justifyContent: 'flex-end'
-      }
     }
-  ] as AgGridReactProps<User>['columnDefs'], [translate, handleDelete, navigate])
+  ] as TableProps<User>['columns'], [translate, handleDelete, navigate])
 
   /* useEffect(() => {
     if (isError) {
@@ -115,7 +96,7 @@ export function useListUserController() {
     },
     filters,
     columnDefs,
-    isLoading: false,
+    isListLoading: false,
     translate,
     translateRoute,
     isDeletePending,

@@ -25,8 +25,14 @@ function saveToken(value: TokenValue, tokenName: string) {
   }
 
   if (isNumber(value)) {
-    const propertyValue = isPureNumberProperty(tokenName) ? value : `${value}px`;
-    document.documentElement.style.setProperty(variableName, String(propertyValue));
+    const propertyValue = isPureNumberProperty(tokenName)
+      ? value
+      : `${value}px`;
+
+    document.documentElement.style.setProperty(
+      variableName,
+      String(propertyValue),
+    );
   }
 }
 
@@ -37,19 +43,20 @@ const isPureNumberProperty = (tokenName: string) =>
   includes(tokenName, 'opacity') ||
   includes(tokenName, 'lineHeight');
 
-export const CssTokenBridge = () => {
+export function CssTokenBridge() {
   const { token } = theme.useToken();
   const { theme: themeMode } = useTheme();
 
   const colors = useMemo(() => {
-    return Object.assign({}, token, themes[themeMode]);
+    return { ...token, ...themes[themeMode] };
   }, [themeMode, token]);
 
   React.useLayoutEffect(() => {
     Object.entries(colors).forEach(([tokenName, value]) => {
+      // @ts-expect-error - value is a string or number
       saveToken(value, tokenName);
     });
   }, [colors]);
 
   return null;
-};
+}

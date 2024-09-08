@@ -1,32 +1,32 @@
 import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { AgGridReactProps } from "ag-grid-react";
 import { useTranslation } from "react-i18next"
-import { message, notification } from "antd";
+import { Flex, message, notification, TableProps } from "antd";
 
 import { Pet } from "@entities/Pet";
 
 import { I18_DEFAULT_NS } from "@config/app-keys"
-import { ICellRendererParams } from "@ag-grid-community/core";
 
 import {
   DeletePetInput,
   PetListFilters,
   useDeletePetMutation,
 } from "@services/pet";
+
 import { useFilters } from "@hooks/useFilters";
 
-import { Actions, DataGrid } from "@components";
+import { Actions, Table } from "@components";
 import { mockPetData } from "./data.mock";
 
 export function useListPetController() {
   const navigate = useNavigate();
 
-  const {
-    filters,
-    updateFilters,
-    clearFilters
-  } = useFilters<PetListFilters>();
+  const { filters, updateFilters, clearFilters } = useFilters<PetListFilters>({
+    page: 1,
+    pageSize: 8,
+    sortBy: 'name',
+    sortDirection: 'ASC',
+  });
 
   const {
     mutate,
@@ -60,56 +60,56 @@ export function useListPetController() {
 
   const columnDefs = useMemo(() => [
     {
-      headerName: translate('name'),
-      flex: 2,
-      cellRenderer: ({ data }: ICellRendererParams<Pet>) => (
-        <DataGrid.ItemCell
-          avatar={data?.avatar_url}
-          value={data?.name}
-          description={data?.type}
+      title: translate('name'),
+      dataIndex: 'name',
+      key: 'name',
+      render: (_, record) => (
+        <Table.ItemCell
+          avatar={record?.avatar_url}
+          value={record?.name}
+          description={record?.type}
         />
       ),
     },
     {
-      headerName: translate('breed'),
-      field: 'breed',
-      flex: 1,
+      title: translate('breed'),
+      dataIndex: 'breed',
+      key: 'breed',
     },
     {
-      headerName: translate('owner'),
-      field: 'owner',
-      cellRenderer: ({ data }: ICellRendererParams<Pet>) => (
-        <DataGrid.ItemCell
+      title: translate('owner'),
+      dataIndex: 'owner',
+      key: 'owner',
+      render: (_, record) => (
+        <Table.ItemCell
           suppressAvatar
-          value={data?.owner}
-          description={data?.ownerEmail}
+          value={record?.owner}
+          description={record?.ownerEmail}
         />
       ),
-      flex: 2,
     },
     {
-      headerName: translate('created-at'),
-      field: 'createdAt',
-      flex: 1,
-      cellRenderer: ({ data }: ICellRendererParams<Pet>) => (
-        <DataGrid.DateCell value={data?.createdAt} />
-      )
+      title: translate('created-at'),
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      render: (createdAt) => <Table.DateCell value={createdAt} />,
     },
     {
-      cellRenderer: Actions,
-      cellRendererParams: ({ data }: ICellRendererParams<Pet>) => ({
-        options: {
-          onEdit: () => navigate(`/pet/${data?.id}/edit`),
-          onDelete: () => handleDelete({ id: data?.id as string }),
-        }
-      }),
+      dataIndex: 'id',
+      render: (id, record) => (
+        <Flex justify="center">
+          <Actions
+            options={{
+              onEdit: () => navigate(`/user/${id}/edit`),
+              onDelete: () => handleDelete({ id: id as string }),
+              deleted: !!record?.deletedAt,
+            }}
+          />
+        </Flex>
+      ),
       width: 80,
-      cellStyle: {
-        display: 'flex',
-        justifyContent: 'flex-end'
-      }
     }
-  ] as AgGridReactProps<Pet>['columnDefs'], [translate, handleDelete, navigate])
+  ] as TableProps<Pet>['columns'], [translate, handleDelete, navigate])
 
   /* useEffect(() => {
     if (isError) {
@@ -127,7 +127,7 @@ export function useListPetController() {
     },
     filters,
     columnDefs,
-    isLoading: false,
+    isListLoading: false,
     translate,
     translateRoute,
     isDeletePending,

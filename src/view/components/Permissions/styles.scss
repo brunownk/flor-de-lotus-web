@@ -1,0 +1,34 @@
+#role-card {
+  height: 100%;
+
+  > .ant-card-body {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+
+    > .permission-buttons {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+
+      position: absolute;
+      top: -34px;
+      right: 24px;
+
+      > button {
+        padding: 14px;
+      }
+    }
+
+    > button {
+      width: fit-content;
+      margin-top: 24px;
+      margin-left: auto;
+    }
+  }
+}
+
+
