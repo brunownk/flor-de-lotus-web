@@ -1,0 +1,13 @@
+import { useTranslation } from "react-i18next";
+
+import { I18_DEFAULT_NS } from "@config/app-keys";
+
+export function usePetBreedGeneralController() {
+  const { t: translate } = useTranslation(I18_DEFAULT_NS, {
+    keyPrefix: 'forms.pet-breed'
+  });
+
+  return {
+    translate,
+  }
+}

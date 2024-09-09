@@ -147,6 +147,60 @@ interface Resources {
           "get-error-description": "Por favor intente nuevamente"
         }
       },
+      "pet-breeds": {
+        "list": {
+          "title": "Razas",
+          "name": "Nombre",
+          "created-at": "Creado en",
+          "create-button": "Nueva Raza",
+          "delete-confirm": "¿Estás seguro de que deseas eliminar esta raza?",
+          "delete-success": "Raza eliminado",
+          "delete-error-message": "Error al eliminar raza",
+          "delete-error-description": "Por favor intente nuevamente",
+          "filter-search": "Buscar",
+          "filter-seach-placeholder": "Nombre",
+          "error-fetching-message": "Error al cargar razas",
+          "error-fetching-description": "Por favor recargar la página"
+        },
+        "create": {
+          "title": "Crear nueva raza",
+          "create-error-message": "Error al crear raza",
+          "create-error-description": "Por favor intente nuevamente",
+          "create-success-message": "Raza creado"
+        },
+        "edit": {
+          "title": "Editar",
+          "get-error-message": "Error al cargar raza",
+          "get-error-description": "Por favor intente nuevamente"
+        }
+      },
+      "pet-types": {
+        "list": {
+          "title": "Tipos",
+          "name": "Nombre",
+          "created-at": "Creado en",
+          "create-button": "Nuevo Tipo",
+          "delete-confirm": "¿Estás seguro de que deseas eliminar este tipo?",
+          "delete-success": "Tipo eliminado",
+          "delete-error-message": "Error al eliminar tipo",
+          "delete-error-description": "Por favor intente nuevamente",
+          "filter-search": "Buscar",
+          "filter-seach-placeholder": "Nombre",
+          "error-fetching-message": "Error al cargar tipos",
+          "error-fetching-description": "Por favor recargar la página"
+        },
+        "create": {
+          "title": "Crear nuevo tipo",
+          "create-error-message": "Error al crear tipo",
+          "create-error-description": "Por favor intente nuevamente",
+          "create-success-message": "Tipo creado"
+        },
+        "edit": {
+          "title": "Editar",
+          "get-error-message": "Error al cargar tipo",
+          "get-error-description": "Por favor intente nuevamente"
+        }
+      },
       "not-found": {
         "title": "¡Lo siento, página no encontrada!",
         "description": "Lo siento, no pudimos encontrar la página que está buscando. ¿Quizás escribió mal la URL? Asegúrese de revisar su ortografía.",
@@ -201,6 +255,20 @@ interface Resources {
         "update-error-message": "Error al actualizar mascota",
         "update-error-description": "Por favor intente nuevamente",
         "update-success-message": "Mascota actualizado"
+      },
+      "pet-breed": {
+        "name-label": "Nombre",
+        "name-placeholder": "Digite el nombre",
+        "type-label": "Tipo",
+        "type-placeholder": "Seleccione el tipo",
+        "edit-button": "Guardar Ediciones",
+        "create-button": "Crear Raza"
+      },
+      "pet-type": {
+        "name-label": "Nombre",
+        "name-placeholder": "Digite el nombre",
+        "edit-button": "Guardar Ediciones",
+        "create-button": "Crear Tipo"
       }
     },
     "actions": {

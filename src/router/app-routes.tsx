@@ -80,7 +80,7 @@ export const privateRoutes: CustomRouteObject[]  = [
               {
                 id: "pet-create",
                 path: "/pet/create",
-                sider: true,
+                sider: false,
                 element: <Pages.CreatePet />,
               },
               {
@@ -88,6 +88,42 @@ export const privateRoutes: CustomRouteObject[]  = [
                 path: "/pet/:petId/edit",
                 sider: false,
                 element: <Pages.EditPet />,
+              },
+              {
+                id: "pet-types",
+                path: "/pet-types",
+                sider: true,
+                element: <Pages.ListPetType />,
+              },
+              {
+                id: "pet-types-create",
+                path: "/pet-type/create",
+                sider: false,
+                element: <Pages.CreatePetType />,
+              },
+              {
+                id: "pet-types-edit",
+                path: "/pet-type/:petTypeId/edit",
+                sider: false,
+                element: <Pages.EditPetType />,
+              },
+              {
+                id: "pet-breeds",
+                path: "/pet-breeds",
+                sider: true,
+                element: <Pages.ListPetBreed />,
+              },
+              {
+                id: "pet-breeds-create",
+                path: "/pet-breed/create",
+                sider: false,
+                element: <Pages.CreatePetBreed />,
+              },
+              {
+                id: "pet-breeds-edit",
+                path: "/pet-breed/:petBreedId/edit",
+                sider: false,
+                element: <Pages.EditPetBreed />,
               },
             ]
           },

@@ -60,6 +60,14 @@
     "pet-list": "Pets",
     "pet-create": "Criar Pet",
 
+    "pet-breeds": "Raças",
+    "pet-breeds-list": "Raças",
+    "pet-breeds-create": "Criar Raça",
+
+    "pet-types": "Tipos",
+    "pet-types-list": "Tipos",
+    "pet-types-create": "Criar Tipo",
+
     "create": "Criar",
     "edit": "Editar",
     "list": "Listar"
@@ -127,6 +135,52 @@
         "title": "Editar"
       }
     },
+    "pet-breeds": {
+      "list": {
+        "title": "Raças",
+        "name": "Nome",
+        "created-at": "Criado em",
+        "create-button": "Nova Raça",
+        "delete-confirm": "Tem certeza que deseja deletar esta raça?",
+        "delete-success": "Raça deletada com sucesso",
+        "delete-error-message": "Falha ao deletar raça",
+        "delete-error-description": "Por favor, tente novamente",
+        "filter-search": "Pesquisar",
+        "filter-seach-placeholder": "Nome",
+        "error-fetching-message": "Falha ao carregar raças",
+        "error-fetching-description": "Por favor, recarregue a página"
+      },
+      "create": {
+        "title": "Criar nova raça",
+        "breadcrumb": "Nova Raça"
+      },
+      "edit": {
+        "title": "Editar"
+      }
+    },
+    "pet-types": {
+      "list": {
+        "title": "Tipos",
+        "name": "Nome",
+        "created-at": "Criado em",
+        "create-button": "Novo Tipo",
+        "delete-confirm": "Tem certeza que deseja deletar este tipo?",
+        "delete-success": "Tipo deletado com sucesso",
+        "delete-error-message": "Falha ao deletar tipo",
+        "delete-error-description": "Por favor, tente novamente",
+        "filter-search": "Pesquisar",
+        "filter-seach-placeholder": "Nome",
+        "error-fetching-message": "Falha ao carregar tipos",
+        "error-fetching-description": "Por favor, recarregue a página"
+      },
+      "create": {
+        "title": "Criar novo tipo",
+        "breadcrumb": "Novo Tipo"
+      },
+      "edit": {
+        "title": "Editar"
+      }
+    },
     "not-found": {
       "title": "Desculpe, página não encontrada!",
       "description": "Desculpe, não conseguimos encontrar a página que você está procurando. Talvez você tenha digitado o URL incorretamente? Certifique-se de verificar a ortografia.",
@@ -171,6 +225,20 @@
       "file-allowed-types": "Permitidos {{types}}",
       "file-max-size": "tamanho máximo de {{size}} Mb",
       "file-upload": "Enviar"
+    },
+    "pet-breed": {
+      "name-label": "Nome",
+      "name-placeholder": "Digite o nome",
+      "type-label": "Tipo",
+      "type-placeholder": "Selecione o tipo do animal",
+      "edit-button": "Salvar Alterações",
+      "create-button": "Criar Raça"
+    },
+    "pet-type": {
+      "name-label": "Nome",
+      "name-placeholder": "Digite o nome",
+      "edit-button": "Salvar Alterações",
+      "create-button": "Criar Tipo"
     }
   },
   "actions": {
