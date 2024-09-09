@@ -1,6 +1,5 @@
 import { BiSolidUserRectangle } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
-import { FaNotesMedical } from "react-icons/fa";
 
 import { CustomRouteObject } from "@type/custom-route-object";
 
@@ -125,32 +124,6 @@ export const privateRoutes: CustomRouteObject[]  = [
                 path: "/pet-breed/:petBreedId/edit",
                 sider: false,
                 element: <Pages.EditPetBreed />,
-              },
-            ]
-          },
-          {
-            id: "medical-record",
-            icon: <FaNotesMedical />,
-            sider: true,
-            group: "management",
-            children: [
-              {
-                id: "medical-record-list",
-                path: "/medical-records",
-                sider: true,
-                element: <Pages.ListMedicalRecords />,
-              },
-              {
-                id: "medical-record-create",
-                path: "/medical-record/create",
-                sider: false,
-                element: <Pages.CreateMedicalRecord />,
-              },
-              {
-                id: "medical-record-edit",
-                path: "/medical-record/:medicalRecordId/edit",
-                sider: false,
-                element: <Pages.EditMedicalRecord />,
               },
             ]
           },
