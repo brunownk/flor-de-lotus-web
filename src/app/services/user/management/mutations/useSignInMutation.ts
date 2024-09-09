@@ -10,12 +10,12 @@ interface SignInInput {
 }
 
 interface SignInResponse {
-  token: string;
+  accessToken: string;
   user: User;
 }
 
 async function signinService(input: SignInInput) {
-  const { data } = await httpClient.post<SignInResponse>('/login', input);
+  const { data } = await httpClient.post<SignInResponse>('/users/signIn', input);
   return data;
 }
 
