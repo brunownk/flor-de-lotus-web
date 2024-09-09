@@ -296,5 +296,21 @@
     "data-grid": {
       "show-total-pages": "{{from}} - {{to}} de {{total}} artículos"
     }
+  },
+  "queries": {
+    "user": {
+      "get-me": {
+        "error-message": "Error al cargar tus datos",
+        "error-description": "Por favor inicia sesión nuevamente"
+      },
+      "get": {
+        "error-message": "Error al cargar usuario",
+        "error-description": "Por favor intente nuevamente"
+      },
+      "list": {
+        "error-message": "Error al cargar usuarios",
+        "error-description": "Por favor intente nuevamente"
+      }
+    }
   }
 }
