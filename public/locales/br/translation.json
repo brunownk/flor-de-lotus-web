@@ -260,21 +260,5 @@
     "data-grid": {
       "show-total-pages": "{{from}} - {{to}} de {{total}} itens"
     }
-  },
-  "queries": {
-    "user": {
-      "get-me": {
-        "error-message": "Falha ao carregar seus dados",
-        "error-description": "Por favor, faça o login novamente"
-      },
-      "get": {
-        "error-message": "Falha ao carregar usuário",
-        "error-description": "Por favor, tente novamente"
-      },
-      "list": {
-        "error-message": "Falha ao carregar usuários",
-        "error-description": "Por favor, tente novamente"
-      }
-    }
   }
 }

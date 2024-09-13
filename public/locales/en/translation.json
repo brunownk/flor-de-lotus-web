@@ -293,21 +293,5 @@
     "data-grid": {
       "show-total-pages": "{{from}} - {{to}} of {{total}} items"
     }
-  },
-  "queries": {
-    "user": {
-      "get-me": {
-        "error-message": "Failed to fetch your data",
-        "error-description": "Please sign in again"
-      },
-      "get": {
-        "error-message": "Failed to fetch user",
-        "error-description": "Please try again"
-      },
-      "list": {
-        "error-message": "Failed to fetch users",
-        "error-description": "Please try again"
-      }
-    }
   }
 }

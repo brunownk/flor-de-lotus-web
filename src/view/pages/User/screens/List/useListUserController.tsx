@@ -10,11 +10,11 @@ import { I18_DEFAULT_NS } from "@config/app-keys"
 import {
   UserListFilters,
   useDeleteUserMutation,
-  useListUsersQuery,
 } from "@services/user/management";
 import { useFilters } from "@hooks/useFilters";
 
 import { Actions, Table } from "@components";
+import { mockData } from "./data.mock";
 
 export function useListUserController() {
   const navigate = useNavigate();
@@ -31,12 +31,7 @@ export function useListUserController() {
     isPending: isDeletePending
   } = useDeleteUserMutation();
 
-  const { data, isLoading: isListLoading } = useListUsersQuery({
-    filters,
-    options: {
-      enabled: !!filters,
-    },
-  });
+  // const { data, isLoading, isError } = useListUsersQuery(filters);
 
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
     keyPrefix: "pages.users.list"
@@ -85,14 +80,23 @@ export function useListUserController() {
     }
   ] as TableProps<User>['columns'], [translate, handleDelete, navigate])
 
+  /* useEffect(() => {
+    if (isError) {
+      notification.error({
+        message: translate('error-fetching-message'),
+        description: translate('error-fetching-description'),
+      })
+    }
+  }, [isError, translate])*/
+
   return {
     data: {
-      nodes: data?.content,
-      totalCount: data?.totalElements,
+      nodes: mockData,
+      totalCount: mockData.length,
     },
     filters,
     columnDefs,
-    isListLoading,
+    isListLoading: false,
     translate,
     translateRoute,
     isDeletePending,

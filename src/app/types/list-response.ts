@@ -1,4 +1,4 @@
 export type ListResponse<T> = {
-  content: T[];
-  totalElements: number;
+  nodes: T[];
+  totalCount: number;
 };
