@@ -8,7 +8,7 @@ interface GetMeResponse {
 }
 
 async function getMeService() {
-  const { data } = await httpClient.get<GetMeResponse>('/users/me');
+  const { data } = await httpClient.get<GetMeResponse>('/user/me');
   return data.user;
 }
 
