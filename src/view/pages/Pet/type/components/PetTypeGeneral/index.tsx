@@ -18,7 +18,7 @@ export function PetTypeGeneral({
   return (
     <Form onSubmit={handleSubmit} methods={methods}>
       <Row gutter={[ 24, 24 ]}>
-        <Col xs={{ flex: '100%' }} lg={{ flex: '65%'}}>
+        <Col xs={{ flex: '100%' }}>
           <Card id="account-card">
             <Row gutter={[ 16, 16 ]}>
               <Col flex="100%">

@@ -3,13 +3,10 @@ import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { httpClient } from "@services/httpClient";
 import { User } from "@entities/User";
 
-interface GetUserResponse {
-  user: User;
-}
 
 async function getUserService(id: string) {
-  const { data } = await httpClient.get<GetUserResponse>(`/users/${id}`);
-  return data.user;
+  const { data } = await httpClient.get<User>(`/user/${id}`);
+  return data;
 }
 
 export const getUserQueryKey = ['user'];

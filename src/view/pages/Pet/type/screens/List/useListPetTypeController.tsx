@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next"
 import { Flex, message, notification, TableProps } from "antd";
@@ -16,24 +16,19 @@ import {
 import { useFilters } from "@hooks/useFilters";
 
 import { Actions, Table } from "@components";
-import { mockPetData } from "./data.mock";
+import { useListPetTypesQuery } from "@services/pet-type";
 
 export function useListPetTypeController() {
   const navigate = useNavigate();
 
-  const { filters, updateFilters, clearFilters } = useFilters<PetListFilters>({
-    page: 1,
-    pageSize: 8,
-    sortBy: 'name',
-    sortDirection: 'ASC',
-  });
+  const { filters, updateFilters, clearFilters } = useFilters<PetListFilters>({});
 
   const {
     mutate,
     isPending: isDeletePending,
   } = useDeletePetMutation();
 
-  // const { data, isLoading, isError } = useListPetsQuery(filters);
+  const { data, isLoading, isError } = useListPetTypesQuery({});
 
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
     keyPrefix: "pages.pet-types.list"
@@ -65,9 +60,7 @@ export function useListPetTypeController() {
       key: 'name',
       render: (_, record) => (
         <Table.ItemCell
-          avatar={record?.avatar_url}
           value={record?.name}
-          description={record?.type}
         />
       ),
     },
@@ -94,23 +87,23 @@ export function useListPetTypeController() {
     }
   ] as TableProps<Pet>['columns'], [translate, handleDelete, navigate])
 
-  /* useEffect(() => {
+  useEffect(() => {
     if (isError) {
       notification.error({
         message: translate('error-fetching-message'),
         description: translate('error-fetching-description'),
       })
     }
-  }, [isError, translate])*/
+  }, [isError, translate])
 
   return {
     data: {
-      nodes: mockPetData,
-      totalCount: mockPetData.length,
+      nodes: data?.content,
+      totalCount: data?.totalElements,
     },
     filters,
     columnDefs,
-    isListLoading: false,
+    isListLoading: isLoading,
     translate,
     translateRoute,
     isDeletePending,

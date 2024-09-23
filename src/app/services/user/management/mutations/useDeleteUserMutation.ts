@@ -10,7 +10,7 @@ export interface DeleteUserInput {
 }
 
 async function deleteUserService(input: DeleteUserInput) {
-  await httpClient.delete<void>(`/users/${input.id}`);
+  await httpClient.delete<void>(`/user/${input.id}`);
 }
 
 export function useDeleteUserMutation(

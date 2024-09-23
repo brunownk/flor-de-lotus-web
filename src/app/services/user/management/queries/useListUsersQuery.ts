@@ -12,7 +12,8 @@ export interface UserListFilters extends Pagination {
 }
 
 async function listUsersService(filters: UserListFilters) {
-  const { data } = await httpClient.get<ListResponse<User>>('/users/', { params: filters });
+  const { data } = await httpClient.get<ListResponse<User>>('/user', { params: filters });
+
   return data;
 }
 

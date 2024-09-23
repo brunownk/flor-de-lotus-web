@@ -37,8 +37,8 @@ export function UserListFilter({
             size="small"
             label={translateFilter('filter-type')}
             options={[
-              { value: false, label: translateFilter('filter-type-all') },
-              { value: true, label: translateFilter('filter-type-active') },
+              { value: true, label: translateFilter('filter-type-all') },
+              { value: false, label: translateFilter('filter-type-active') },
             ]}
           />
 

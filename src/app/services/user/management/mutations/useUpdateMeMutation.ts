@@ -14,7 +14,7 @@ interface UpdateMeResponse {
 }
 
 async function updateMeService(input: UpdateMeInput) {
-  const { data } = await httpClient.put<UpdateMeResponse>('/users/me', input);
+  const { data } = await httpClient.put<UpdateMeResponse>('/user/me', input);
   return data;
 }
 

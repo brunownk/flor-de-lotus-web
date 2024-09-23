@@ -1,5 +1,5 @@
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { message, notification } from "antd";
 import { useTranslation } from "react-i18next"
 
 import { I18_DEFAULT_NS } from "@config/app-keys"
@@ -13,6 +13,8 @@ import {
 } from "@validations/user/create-user";
 
 export function useCreateUserController() {
+  const navigate = useNavigate();
+
   const { mutate, isPending } = useCreateUserMutation();
 
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
@@ -27,24 +29,13 @@ export function useCreateUserController() {
     resolver: zodResolver(createUserValidationSchema),
   });
 
-  const {
-    reset,
-    handleSubmit: hookFormHandleSubmit,
-  } = methods;
+  const { handleSubmit: hookFormHandleSubmit } = methods;
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     mutate(data, {
-      onSuccess: () => {
-        reset();
-        message.open({
-          type: 'success',
-          content: translate('create-success-message'),
-        });
+      onSuccess: ({ id }) => {
+        navigate(`/user/${id}/edit`);
       },
-      onError: () => notification.error({
-        message: translate('create-error-message'),
-        description: translate('create-error-description'),
-      })
     });
   })
 

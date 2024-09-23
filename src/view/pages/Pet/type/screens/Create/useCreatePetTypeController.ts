@@ -1,19 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { message, notification } from "antd";
 import { useTranslation } from "react-i18next"
 
 import { I18_DEFAULT_NS } from "@config/app-keys"
 
-import { useCreatePetMutation } from "@services/pet";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import {
-  createPetValidationSchema,
-  CreatePetFormData
-} from "@validations/pet/create-pet";
+import { useCreatePetTypeMutation } from "@services/pet-type";
+import { CreatePetTypeFormData, createPetTypeValidationSchema } from "@validations/pet-type";
+import { useAuth } from "@hooks/useAuth";
 
 export function useCreatePetTypeController() {
-  const { mutate, isPending } = useCreatePetMutation();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const { mutate, isPending } = useCreatePetTypeMutation();
 
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
     keyPrefix: "pages.pet-types.create"
@@ -23,19 +25,18 @@ export function useCreatePetTypeController() {
     keyPrefix: "routes"
   })
 
-  const methods = useForm<CreatePetFormData>({
-    resolver: zodResolver(createPetValidationSchema),
+  const methods = useForm<CreatePetTypeFormData>({
+    resolver: zodResolver(createPetTypeValidationSchema),
   });
 
   const {
-    reset,
     handleSubmit: hookFormHandleSubmit,
   } = methods;
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
-    mutate(data, {
-      onSuccess: () => {
-        reset();
+    mutate({ ...data, createdById: user!.id }, {
+      onSuccess: ({ id }) => {
+        navigate(`/pet-type/${id}/edit`);
         message.open({
           type: 'success',
           content: translate('create-success-message'),

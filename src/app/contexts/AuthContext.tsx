@@ -8,12 +8,11 @@ import { localStorageKeys } from '@config/local-storage-keys';
 
 import { useGetMeQuery } from '@services/user/management';
 
-import { User, USER_ROLE } from '../entities/User';
+import { User } from '../entities/User';
 
 interface AuthContextValue {
   signedIn: boolean;
   user: User | undefined;
-  isAdmin: boolean;
   signin(accessToken: string): void;
   signout(): void;
   refetch(
@@ -38,6 +37,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     enabled: signedIn,
   });
 
+  console.log(data, signedIn)
+
   const signin = useCallback((accessToken: string) => {
     localStorage.setItem(localStorageKeys.ACCESS_TOKEN, accessToken);
     setSignedIn(true);
@@ -60,7 +61,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       value={{
         signedIn: isSuccess && signedIn,
         user: data,
-        isAdmin: data?.role === USER_ROLE.ADMIN,
         signin,
         signout,
         refetch,

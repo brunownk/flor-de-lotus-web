@@ -17,8 +17,8 @@ interface UpdateUserResponse {
   user: User;
 }
 
-async function updateUserService({ id, ...input}: UpdateUserInput) {
-  const { data } = await httpClient.put<UpdateUserResponse>(`/users/${id}`, input);
+async function updateUserService(input: UpdateUserInput) {
+  const { data } = await httpClient.put<UpdateUserResponse>(`/user`, input);
   return data;
 }
 

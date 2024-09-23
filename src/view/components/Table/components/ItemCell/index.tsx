@@ -14,7 +14,7 @@ export function ItemCell({
   avatar,
   value,
   description,
-  suppressAvatar,
+  suppressAvatar = true,
 }: IItemCellProps) {
   const { density } = useTableDensity();
   const isDense = (['small', 'middle'] as IDensityTypes[]).includes(density);

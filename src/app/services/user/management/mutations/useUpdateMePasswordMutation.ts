@@ -9,7 +9,7 @@ interface UpdateMePasswordInput {
 }
 
 async function updateMePasswordService(input: UpdateMePasswordInput) {
-  const { data } = await httpClient.patch<void>('/users/me/update-password', input);
+  const { data } = await httpClient.patch<void>('/user/me/update-password', input);
   return data;
 }
 
