@@ -6,25 +6,23 @@ import { useTranslation } from "react-i18next"
 
 import { I18_DEFAULT_NS } from "@config/app-keys"
 
-import { useUpdatePetMutation } from "@services/pet";
-import { useGetPetQuery } from "@services/pet";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
   editPetValidationSchema,
   EditPetFormData
 } from "@validations/pet/edit-pet";
+import { useGetPetBreedQuery, useUpdatePetBreedMutation } from "@services/pet-breed";
 
 export function useEditPetBreedController() {
   const { petBreedId } = useParams<{ petBreedId: string }>();
   const navigate = useNavigate();
 
-  const { data, isError, isSuccess, refetch } = useGetPetQuery(petBreedId as string, {
+  const { data, isError, isSuccess, refetch } = useGetPetBreedQuery(petBreedId as string, {
     enabled: !!petBreedId,
   });
 
-  const { mutate, isPending } = useUpdatePetMutation();
+  const { mutate, isPending } = useUpdatePetBreedMutation();
 
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
     keyPrefix: "pages.pets.edit"

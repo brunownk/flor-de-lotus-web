@@ -13,12 +13,12 @@ export function PetBreedGeneral({
   isLoading,
   onSubmit: handleSubmit,
 }: PetBreedGeneralProps) {
-  const { translate } = usePetBreedGeneralController();
+  const { petTypes, translate } = usePetBreedGeneralController();
 
   return (
     <Form onSubmit={handleSubmit} methods={methods}>
       <Row gutter={[ 24, 24 ]}>
-        <Col xs={{ flex: '100%' }} lg={{ flex: '65%'}}>
+        <Col xs={{ flex: '100%' }}>
           <Card id="account-card">
             <Row gutter={[ 16, 16 ]}>
               <Col flex="100%">
@@ -30,10 +30,11 @@ export function PetBreedGeneral({
               </Col>
 
               <Col flex={1}>
-                <Form.Input
-                  name="type"
+                <Form.Select
+                  name="animalTypeId"
                   label={translate('type-label')}
                   placeholder={translate('type-placeholder')}
+                  options={petTypes}
                 />
               </Col>
             </Row>

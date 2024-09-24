@@ -1,39 +1,37 @@
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next"
-import { Flex, message, notification, TableProps } from "antd";
+import { Flex, TableProps } from "antd";
 
 import { Pet } from "@entities/Pet";
 
 import { I18_DEFAULT_NS } from "@config/app-keys"
 
 import {
-  DeletePetInput,
-  PetListFilters,
-  useDeletePetMutation,
-} from "@services/pet";
+  PetBreedsListFilters,
+  useDeletePetBreedMutation,
+  useListPetBreedsQuery
+} from "@services/pet-breed";
 
 import { useFilters } from "@hooks/useFilters";
 
 import { Actions, Table } from "@components";
-import { mockPetData } from "./data.mock";
 
 export function useListPetBreedController() {
   const navigate = useNavigate();
 
-  const { filters, updateFilters, clearFilters } = useFilters<PetListFilters>({
+  const { filters, updateFilters, clearFilters } = useFilters<PetBreedsListFilters>({
     page: 1,
     pageSize: 8,
-    sortBy: 'name',
-    sortDirection: 'ASC',
+    withDeleted: false,
   });
 
   const {
     mutate,
     isPending: isDeletePending,
-  } = useDeletePetMutation();
+  } = useDeletePetBreedMutation();
 
-  // const { data, isLoading, isError } = useListPetsQuery(filters);
+  const { data, isLoading } = useListPetBreedsQuery(filters!);
 
   const { t: translate } = useTranslation(I18_DEFAULT_NS, {
     keyPrefix: "pages.pet-breeds.list"
@@ -42,21 +40,6 @@ export function useListPetBreedController() {
   const { t: translateRoute } = useTranslation(I18_DEFAULT_NS, {
     keyPrefix: "routes"
   })
-
-  const handleDelete = useCallback(async (data: DeletePetInput) => {
-    mutate(data, {
-      onSuccess: () => {
-        message.open({
-          type: 'success',
-          content: translate('delete-success'),
-        });
-      },
-      onError: () => notification.error({
-        message: translate('delete-error-message'),
-        description: translate('delete-error-description'),
-      })
-    });
-  }, [mutate, translate])
 
   const columnDefs = useMemo(() => [
     {
@@ -84,7 +67,7 @@ export function useListPetBreedController() {
           <Actions
             options={{
               onEdit: () => navigate(`/user/${id}/edit`),
-              onDelete: () => handleDelete({ id: id as string }),
+              onDelete: () => mutate({ id: id as string }),
               deleted: !!record?.deletedAt,
             }}
           />
@@ -92,29 +75,19 @@ export function useListPetBreedController() {
       ),
       width: 80,
     }
-  ] as TableProps<Pet>['columns'], [translate, handleDelete, navigate])
-
-  /* useEffect(() => {
-    if (isError) {
-      notification.error({
-        message: translate('error-fetching-message'),
-        description: translate('error-fetching-description'),
-      })
-    }
-  }, [isError, translate])*/
+  ] as TableProps<Pet>['columns'], [translate, mutate, navigate])
 
   return {
     data: {
-      nodes: mockPetData,
-      totalCount: mockPetData.length,
+      nodes: data?.content,
+      totalCount: data?.totalElements,
     },
     filters,
     columnDefs,
-    isListLoading: false,
+    isListLoading: isLoading,
     translate,
     translateRoute,
     isDeletePending,
-    handleDelete,
     updateFilters,
     clearFilters,
     navigate,
