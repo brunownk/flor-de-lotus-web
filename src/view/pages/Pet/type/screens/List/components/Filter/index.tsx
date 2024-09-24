@@ -32,6 +32,16 @@ export function PetListFilter({
     >
       <Space size={32}>
         <Space size={16}>
+          <Form.ToggleGroup
+              name="withDeleted"
+              size="small"
+              label={translateFilter('filter-type')}
+              options={[
+                { value: true, label: translateFilter('filter-type-all') },
+                { value: false, label: translateFilter('filter-type-active') },
+              ]}
+            />
+
           <Form.Input name="search" label={translateFilter('filter-search')} />
         </Space>
 

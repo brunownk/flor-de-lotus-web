@@ -41,7 +41,6 @@ export function useCreateUserMutation(
       queryClient.invalidateQueries({
         queryKey: listUsersQueryKey,
         refetchType: 'all',
-        exact: true,
       });
     },
     onError: () => {

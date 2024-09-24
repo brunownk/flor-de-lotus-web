@@ -1,10 +1,10 @@
-import { useEffect } from "react";
 import { UseMutationOptions, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { PetType } from "@entities/PetType";
 
 import { httpClient } from "../../httpClient";
 import { listPetTypesQueryKey } from "../queries";
+import { getPetQueryKey } from "@services/pet/queries";
 
 interface UpdatePetTypeInput {
   id: string;
@@ -21,20 +21,21 @@ export function useUpdatePetTypeMutation(
 ) {
   const queryClient = useQueryClient();
 
-  const { mutate, isPending, isSuccess } = useMutation({
-    mutationFn: async (input: UpdatePetTypeInput) => updatePetTypeService(input),
-    ...options,
-  });
-
-  useEffect(() => {
-    if (isSuccess) {
+  const { mutate, isPending } = useMutation({
+    mutationFn: updatePetTypeService,
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: listPetTypesQueryKey,
-        refetchType: 'active',
-        exact: true,
+        refetchType: 'all',
       });
-    }
-  }, [isSuccess, queryClient])
+
+      queryClient.invalidateQueries({
+        queryKey: getPetQueryKey,
+        refetchType: 'active',
+      });
+    },
+    ...options,
+  });
 
   return {
     mutate,

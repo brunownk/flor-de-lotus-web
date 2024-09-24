@@ -20,7 +20,7 @@ export function CreatePetType() {
         title={translate('title')}
         breadcrumb={[
           { title: <Link to="/">{translateRoute('home')}</Link> },
-          { title: <Link to="/pets">{translateRoute('list')}</Link> },
+          { title: <Link to="/pet-types">{translateRoute('list')}</Link> },
           { title: translateRoute('create') }
         ]}
       />

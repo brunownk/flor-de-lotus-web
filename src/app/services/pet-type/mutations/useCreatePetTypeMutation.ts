@@ -1,10 +1,12 @@
-import { useEffect } from "react";
 import { UseMutationOptions, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { PetType } from "@entities/PetType";
 
 import { httpClient } from "../../httpClient";
 import { listPetTypesQueryKey } from "../queries";
+import { message, notification } from "antd";
+import { useTranslation } from "react-i18next";
+import { I18_DEFAULT_NS } from "@config/app-keys";
 
 interface CreatePetTypeInput {
   name: string;
@@ -21,20 +23,31 @@ export function useCreatePetTypeMutation(
 ) {
   const queryClient = useQueryClient();
 
-  const { mutate, isPending, isSuccess } = useMutation({
-    mutationFn: async (input: CreatePetTypeInput) => createPetTypeService(input),
-    ...options,
-  });
+  const { t: translate } = useTranslation(I18_DEFAULT_NS, {
+    keyPrefix: "pages.pet-types.create"
+  })
 
-  useEffect(() => {
-    if (isSuccess) {
+  const { mutate, isPending } = useMutation({
+    mutationFn: createPetTypeService,
+    onSuccess: () => {
+      message.open({
+        type: 'success',
+        content: translate('create-success-message'),
+      });
+
       queryClient.invalidateQueries({
         queryKey: listPetTypesQueryKey,
         refetchType: 'all',
-        exact: true,
       });
-    }
-  }, [isSuccess, queryClient])
+    },
+    onError: () => {
+      notification.error({
+        message: translate('create-error-message'),
+        description: translate('create-error-description'),
+      });
+    },
+    ...options,
+  });
 
   return {
     mutate,

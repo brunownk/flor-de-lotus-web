@@ -1,11 +1,10 @@
-import { useEffect } from "react";
 import { UseMutationOptions, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { httpClient } from "@services/httpClient";
 
 import { User } from "@entities/User";
 
-import { listUsersQueryKey } from "../queries";
+import { getUserQueryKey, listUsersQueryKey } from "../queries";
 
 interface UpdateUserInput {
   id: string;
@@ -27,20 +26,21 @@ export function useUpdateUserMutation(
 ) {
   const queryClient = useQueryClient();
 
-  const { mutate, isPending, isSuccess } = useMutation({
-    mutationFn: async (input: UpdateUserInput) => updateUserService(input),
-    ...options,
-  });
-
-  useEffect(() => {
-    if (isSuccess) {
+  const { mutate, isPending } = useMutation({
+    mutationFn: updateUserService,
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: listUsersQueryKey,
-        refetchType: 'active',
-        exact: true,
+        refetchType: 'all',
       });
-    }
-  }, [isSuccess, queryClient])
+
+      queryClient.invalidateQueries({
+        queryKey: getUserQueryKey,
+        refetchType: 'active',
+      });
+    },
+    ...options,
+  });
 
   return {
     mutate,
